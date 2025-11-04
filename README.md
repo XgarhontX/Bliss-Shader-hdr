@@ -1,3 +1,10 @@
+# HDR Installation
+
+* [Google Docs (Requiring SpecialK and ReShade)](https://docs.google.com/document/d/1obuYnRTlaqUpiqBq2P6V-_eXvRaSgTB6qboJaC4Fojk/edit?usp=sharing)
+
+![Screenshot](docs/hdrpic.png)
+
+
 # Bliss
 <img src="https://github.com/X0nk/Bliss-Shader/assets/122314734/873c788c-5a48-46c0-9fb5-eac57b4ffa27" width="100%" height="100%">
 I always loved chocapic's shaders, and how customizeable it was. But i wanted MORE.
