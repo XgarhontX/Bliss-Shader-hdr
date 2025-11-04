@@ -19,6 +19,7 @@ uniform int hideGUI;
 #include "/lib/color_transforms.glsl"
 #include "/lib/color_dither.glsl"
 #include "/lib/res_params.glsl"
+#include "/renodx.glsl"
 
 /*
 vec4 SampleTextureCatmullRom(sampler2D tex, vec2 uv, vec2 texSize )
@@ -154,5 +155,9 @@ void main() {
 	  color = colorGrading(color);
   #endif
 
-	gl_FragData[0].rgb = clamp(int8Dither(color, texcoord),0.0,1.0);
+  #ifndef RENODX_ENABLED
+    color = clamp(int8Dither(color, texcoord),0.0,1.0);
+  #endif
+
+	gl_FragData[0].rgb = color;
 }

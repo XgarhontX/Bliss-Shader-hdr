@@ -18,6 +18,7 @@ uniform int hideGUI;
 #include "/lib/color_transforms.glsl"
 #include "/lib/color_dither.glsl"
 #include "/lib/res_params.glsl"
+#include "/renodx.glsl"
 
 
 float interleaved_gradientNoise(){
@@ -114,6 +115,8 @@ void main() {
   if(shadowUV.x < 1.0 && shadowUV.y < 1.0 && hideGUI == 1)COLOR = texture2D(shadowcolor1,shadowUV).rgb;
   #endif
 
+  //RenderIntermediatePass
+  COLOR = RenderIntermediatePass(COLOR);
 
   gl_FragColor.rgb = COLOR;
 }
