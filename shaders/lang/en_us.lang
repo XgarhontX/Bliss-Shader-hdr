@@ -740,10 +740,15 @@ option.TRANSLUCENT_COLORED_SHADOWS.comment = §bWhat is this?§r This effect all
 
 
 
+
+
+
+
+
 # RenoDX Screens
 screen.renodx = RenoDX
-screen.renodx_reinhard = Reinhard Settings
-screen.renodx_reinhard.comment = Cleanly roll off highlights to peak.
+screen.renodx_reinhard = Reinhard Piecewise Settings
+screen.renodx_reinhard.comment = Gradually roll off highlights to peak.
 screen.renodx_aces = ACES Settings
 screen.renodx_aces.comment = Contrast and blowout via ACES color space.
 screen.renodx_gt = Gran Turismo Sport Settings
@@ -752,6 +757,10 @@ screen.renodx_gt7 = Gran Turismo 7 Settings
 screen.renodx_gt7.comment = ACES-like contrast, very clippy, and very vibrant. Has customizable blowout. Clamps BT2020 (which is plenty wcg).
 screen.renodx_hermite = Hermite Spline Settings
 screen.renodx_hermite.comment = Fixed spline with toe and shoulder.
+screen.renodx_hable = Uncharted 2 / Hable Settings
+screen.renodx_hable.comment = From Uncharted 2 by John Hable, with toe, lienar extended to HDR.
+screen.renodx_exproll = Exponential Roll-off Settings
+screen.renodx_exproll.comment = From DICE's Frostbite, aggressive shoulder roll-off.
 
 # RenoDX Main
 option.RENODX_ENABLED = Enabled
@@ -766,6 +775,9 @@ option.RENODX_GAME_BRIGHTNESS.comment = In nits, aka paper white.
 option.RENODX_PEAK_BRIGHTNESS = Peak Brightness
 option.RENODX_PEAK_BRIGHTNESS.comment = Maximum brightness in nits.
 
+option.RENODX_SHOULDER_START = Shoulder Start
+option.RENODX_SHOULDER_START.comment = Beginning of tonemap's shoulder in nits.
+
 option.RENODX_CLAMP_COLORSPACE = Color Space Clamp
 option.RENODX_CLAMP_COLORSPACE.comment = Clamp right at final output.
 value.RENODX_CLAMP_COLORSPACE.RENODX_NONE    = None
@@ -779,14 +791,13 @@ value.RENODX_GAMMA.RENODX_GAMMA_NONE = Off
 value.RENODX_GAMMA.RENODX_GAMMA_22  = 2.2
 value.RENODX_GAMMA.RENODX_GAMMA_24 = 2.4
 
+option.RENODX_RCAS = RCAS
+option.RENODX_RCAS.comment = Robust (4 samples) Contrast Adaptive Sharpening.
+option.RENODX_RCAS_DENOISE = RCAS Denoise
+option.RENODX_RCAS_DENOISE.comment = Additional denoising step alongside sharpening.
+
 option.RENODX_SATURATION = Saturation
 option.RENODX_SATURATION.comment = OKLab saturation, in percentage. 100 is disabled.
-
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_AUTO Auto by Tonemap Scaling
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_PRE Before Tonemap
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_POST After Tonemap
-option.RENODX_SATURATION_ORDER Saturation Order
-option.RENODX_SATURATION_ORDER.comment When to apply saturation. Applying before tonemap will cap to working color space. If auto, per-channel is before, luminance is after.
 
 # RenoDX Debug
 option.RENODX_DEBUG = Debug Output
@@ -794,7 +805,6 @@ value.RENODX_DEBUG.RENODX_DEBUG_NONE = None
 value.RENODX_DEBUG.RENODX_DEBUG_UNTONEMAPPED = Untonemapped
 value.RENODX_DEBUG.RENODX_DEBUG_TONEMAPPED = Tonemapped
 value.RENODX_DEBUG.RENODX_DEBUG_SPLIT = Untonemapped / Tonemapped
-value.RENODX_DEBUG.RENODX_DEBUG_APPCMASK = Per Channel Correct Strength
 
 option.RENODX_WORKINGCOLORSPACE = Working Color Space
 option.RENODX_WORKINGCOLORSPACE.comment = The color space of the shaderpack's rendering pipeline.
@@ -803,16 +813,11 @@ option.RENODX_WORKINGCOLORSPACE.comment = The color space of the shaderpack's re
 option.RENODX_UPGRADE_ENABLED = Upgrade Tone Map (BT709 Clamp)
 option.RENODX_UPGRADE_ENABLED.comment = Map SDR chroma on HDR luma.
 
-option.RENODX_UPGRADE_AMOUNT = Amount
+option.RENODX_UPGRADE_AMOUNT = Upgrade Amount
 option.RENODX_UPGRADE_AMOUNT.comment = How much should the HDR color be influenced by the SDR?
 
-option.RENODX_UPGRADE_AUTO = Auto Correct
+option.RENODX_UPGRADE_AUTO = Upgrade Auto Correct
 option.RENODX_UPGRADE_AUTO.comment = How much should the HDR color be corrected by the SDR?
-
-option.RENODX_APPC_AMOUNT = Per Channel Correction Amount
-option.RENODX_APPC_AMOUNT.comment = Attempt to reverse the blowout of SDR tonemapper.
-option.RENODX_APPC_POW = Per Channel Correction Highlights Only
-option.RENODX_APPC_POW.comment = Increase to target only highlights.
 
 # RenoDX HDR Tone Map
 option.RENODX_EXPOSURE = Exposure
@@ -827,11 +832,13 @@ option.RENODX_SCALING.comment = Run the tonemapper for all rgb channels or just 
 option.RENODX_HDRTONEMAP_TYPE = HDR Tone Map Type
 option.RENODX_HDRTONEMAP_TYPE.comment = Read tooltip of each!
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_OFF = Off
-value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_REINHARD = Reinhard
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_REINHARD = Reinhard Piecewise
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_ACES = ACES
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_GT = Gran Turismo Sport
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_HERMITE = Hermite Spline
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_GT7 = Gran Turismo 7
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_HABLE = Uncharted 2 / Hable
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_EXPROLL = Exponential Roll-off
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_DEFAULT = Default
 
 # RenoDX Reinhard
@@ -885,3 +892,14 @@ option.RENODX_GT7_BLOW_START.comment = Start of chroma blowout.
 
 option.RENODX_GT7_BLOW_END = Blowout End
 option.RENODX_GT7_BLOW_END.comment = End of chroma blowout.
+
+#Hable
+option.RENODX_HABLE_A = Shoulder Strength
+option.RENODX_HABLE_B = Linear Section Strength
+option.RENODX_HABLE_C = Linear Angle
+option.RENODX_HABLE_D = Toe Strength
+option.RENODX_HABLE_E = Toe Numerator
+option.RENODX_HABLE_F = Toe Denominator
+option.RENODX_HABLE_W = White Point
+option.RENODX_HABLE_BLOWOUT = Blowout
+option.RENODX_HABLE_BLOWOUT.comment = Blend SDR blowout on hightlights.

@@ -2,16 +2,14 @@
 DEV NOTES:
 
 !! #define RENODX_UPGRADE_ENABLED
-!! #define RENODX_APPC_ENABLED
 !! #define RENODX_SCALING_DEFAULT RENODX_SCALING_Y
 !! #define RENODX_WORKING_COLORSPACE RENODX_BT709
-!! #define RENODX_HDRTONEMAP_TYPE_DEFAULT RENODX_HDRTONEMAP_TYPE_REINHARD
 !! #include "/renodx.glsl"
 
 !! //#define RENODX_UPGRADE_ENABLED
-!! //#define RENODX_APPC_ENABLED
 !! #define RENODX_SCALING_DEFAULT RENODX_SCALING_PERCHANNEL
 !! #define RENODX_WORKING_COLORSPACE RENODX_AP1
+!! #define RENODX_SCALING_DEFAULT RENODX_SCALING_PERCHANNEL
 !! #define RENODX_HDRTONEMAP_TYPE_DEFAULT RENODX_HDRTONEMAP_TYPE_REINHARD
 !! #include "/renodx.glsl"
 
@@ -19,7 +17,8 @@ DEV NOTES:
 
 //Main
 #define RENODX_ENABLED
-#define RENODX_PEAK_BRIGHTNESS 1000 //[203 210 215 220 225 230 235 240 245 250 255 260 265 270 275 280 285 290 295 300 305 310 315 320 325 330 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425 430 435 440 445 450 455 460 465 470 475 480 485 490 495 500 505 510 515 520 525 530 535 540 545 550 555 560 565 570 575 580 585 590 595 600 605 610 615 620 625 630 635 640 645 650 655 660 665 670 675 680 685 690 695 700 705 710 715 720 725 730 735 740 745 750 755 760 765 770 775 780 785 790 795 800 805 810 815 820 825 830 835 840 845 850 855 860 865 870 875 880 885 890 895 900 905 910 915 920 925 930 935 940 945 950 955 960 965 970 975 980 985 990 995 1000 1005 1010 1015 1020 1025 1030 1035 1040 1045 1050 1055 1060 1065 1070 1075 1080 1085 1090 1095 1100 1105 1110 1115 1120 1125 1130 1135 1140 1145 1150 1155 1160 1165 1170 1175 1180 1185 1190 1195 1200 1205 1210 1215 1220 1225 1230 1235 1240 1245 1250 1255 1260 1265 1270 1275 1280 1285 1290 1295 1300 1305 1310 1315 1320 1325 1330 1335 1340 1345 1350 1355 1360 1365 1370 1375 1380 1385 1390 1395 1400 1405 1410 1415 1420 1425 1430 1435 1440 1445 1450 1455 1460 1465 1470 1475 1480 1485 1490 1495 1500 1505 1510 1515 1520 1525 1530 1535 1540 1545 1550 1555 1560 1565 1570 1575 1580 1585 1590 1595 1600 1605 1610 1615 1620 1625 1630 1635 1640 1645 1650 1655 1660 1665 1670 1675 1680 1685 1690 1695 1700 1705 1710 1715 1720 1725 1730 1735 1740 1745 1750 1755 1760 1765 1770 1775 1780 1785 1790 1795 1800 1805 1810 1815 1820 1825 1830 1835 1840 1845 1850 1855 1860 1865 1870 1875 1880 1885 1890 1895 1900 1905 1910 1915 1920 1925 1930 1935 1940 1945 1950 1955 1960 1965 1970 1975 1980 1985 1990 1995 2000 2005 2010 2015 2020 2025 2030 2035 2040 2045 2050 2055 2060 2065 2070 2075 2080 2085 2090 2095 2100 2105 2110 2115 2120 2125 2130 2135 2140 2145 2150 2155 2160 2165 2170 2175 2180 2185 2190 2195 2200 2205 2210 2215 2220 2225 2230 2235 2240 2245 2250 2255 2260 2265 2270 2275 2280 2285 2290 2295 2300 2305 2310 2315 2320 2325 2330 2335 2340 2345 2350 2355 2360 2365 2370 2375 2380 2385 2390 2395 2400 2405 2410 2415 2420 2425 2430 2435 2440 2445 2450 2455 2460 2465 2470 2475 2480 2485 2490 2495 2500 2505 2510 2515 2520 2525 2530 2535 2540 2545 2550 2555 2560 2565 2570 2575 2580 2585 2590 2595 2600 2605 2610 2615 2620 2625 2630 2635 2640 2645 2650 2655 2660 2665 2670 2675 2680 2685 2690 2695 2700 2705 2710 2715 2720 2725 2730 2735 2740 2745 2750 2755 2760 2765 2770 2775 2780 2785 2790 2795 2800 2805 2810 2815 2820 2825 2830 2835 2840 2845 2850 2855 2860 2865 2870 2875 2880 2885 2890 2895 2900 2905 2910 2915 2920 2925 2930 2935 2940 2945 2950 2955 2960 2965 2970 2975 2980 2985 2990 2995 3000 3005 3010 3015 3020 3025 3030 3035 3040 3045 3050 3055 3060 3065 3070 3075 3080 3085 3090 3095 3100 3105 3110 3115 3120 3125 3130 3135 3140 3145 3150 3155 3160 3165 3170 3175 3180 3185 3190 3195 3200 3205 3210 3215 3220 3225 3230 3235 3240 3245 3250 3255 3260 3265 3270 3275 3280 3285 3290 3295 3300 3305 3310 3315 3320 3325 3330 3335 3340 3345 3350 3355 3360 3365 3370 3375 3380 3385 3390 3395 3400 3405 3410 3415 3420 3425 3430 3435 3440 3445 3450 3455 3460 3465 3470 3475 3480 3485 3490 3495 3500 3505 3510 3515 3520 3525 3530 3535 3540 3545 3550 3555 3560 3565 3570 3575 3580 3585 3590 3595 3600 3605 3610 3615 3620 3625 3630 3635 3640 3645 3650 3655 3660 3665 3670 3675 3680 3685 3690 3695 3700 3705 3710 3715 3720 3725 3730 3735 3740 3745 3750 3755 3760 3765 3770 3775 3780 3785 3790 3795 3800 3805 3810 3815 3820 3825 3830 3835 3840 3845 3850 3855 3860 3865 3870 3875 3880 3885 3890 3895 3900 3905 3910 3915 3920 3925 3930 3935 3940 3945 3950 3955 3960 3965 3970 3975 3980 3985 3990 3995 4000]
+#define RENODX_PEAK_BRIGHTNESS 1000 //[203 210 215 220 225 230 235 240 245 250 255 260 265 270 275 280 285 290 295 300 305 310 315 320 325 330 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425 430 435 440 445 450 455 460 465 470 475 480 485 490 495 500 505 510 515 520 525 530 535 540 545 550 555 560 565 570 575 580 585 590 595 600 605 610 615 620 625 630 635 640 645 650 655 660 665 670 675 680 685 690 695 700 705 710 715 720 725 730 735 740 745 750 755 760 765 770 775 780 785 790 795 800 805 810 815 820 825 830 835 840 845 850 855 860 865 870 875 880 885 890 895 900 905 910 915 920 925 930 935 940 945 950 955 960 965 970 975 980 985 990 995 1000 1005 1010 1015 1020 1025 1030 1035 1040 1045 1050 1055 1060 1065 1070 1075 1080 1085 1090 1095 1100 1105 1110 1115 1120 1125 1130 1135 1140 1145 1150 1155 1160 1165 1170 1175 1180 1185 1190 1195 1200 1205 1210 1215 1220 1225 1230 1235 1240 1245 1250 1255 1260 1265 1270 1275 1280 1285 1290 1295 1300 1305 1310 1315 1320 1325 1330 1335 1340 1345 1350 1355 1360 1365 1370 1375 1380 1385 1390 1395 1400 1405 1410 1415 1420 1425 1430 1435 1440 1445 1450 1455 1460 1465 1470 1475 1480 1485 1490 1495 1500 1505 1510 1515 1520 1525 1530 1535 1540 1545 1550 1555 1560 1565 1570 1575 1580 1585 1590 1595 1600 1605 1610 1615 1620 1625 1630 1635 1640 1645 1650 1655 1660 1665 1670 1675 1680 1685 1690 1695 1700 1705 1710 1715 1720 1725 1730 1735 1740 1745 1750 1755 1760 1765 1770 1775 1780 1785 1790 1795 1800 1805 1810 1815 1820 1825 1830 1835 1840 1845 1850 1855 1860 1865 1870 1875 1880 1885 1890 1895 1900 1905 1910 1915 1920 1925 1930 1935 1940 1945 1950 1955 1960 1965 1970 1975 1980 1985 1990 1995 2000 2005 2010 2015 2020 2025 2030 2035 2040 2045 2050 2055 2060 2065 2070 2075 2080 2085 2090 2095 2100 2105 2110 2115 2120 2125 2130 2135 2140 2145 2150 2155 2160 2165 2170 2175 2180 2185 2190 2195 2200 2205 2210 2215 2220 2225 2230 2235 2240 2245 2250 2255 2260 2265 2270 2275 2280 2285 2290 2295 2300 2305 2310 2315 2320 2325 2330 2335 2340 2345 2350 2355 2360 2365 2370 2375 2380 2385 2390 2395 2400 2405 2410 2415 2420 2425 2430 2435 2440 2445 2450 2455 2460 2465 2470 2475 2480 2485 2490 2495 2500 2505 2510 2515 2520 2525 2530 2535 2540 2545 2550 2555 2560 2565 2570 2575 2580 2585 2590 2595 2600 2605 2610 2615 2620 2625 2630 2635 2640 2645 2650 2655 2660 2665 2670 2675 2680 2685 2690 2695 2700 2705 2710 2715 2720 2725 2730 2735 2740 2745 2750 2755 2760 2765 2770 2775 2780 2785 2790 2795 2800 2805 2810 2815 2820 2825 2830 2835 2840 2845 2850 2855 2860 2865 2870 2875 2880 2885 2890 2895 2900 2905 2910 2915 2920 2925 2930 2935 2940 2945 2950 2955 2960 2965 2970 2975 2980 2985 2990 2995 3000 3005 3010 3015 3020 3025 3030 3035 3040 3045 3050 3055 3060 3065 3070 3075 3080 3085 3090 3095 3100 3105 3110 3115 3120 3125 3130 3135 3140 3145 3150 3155 3160 3165 3170 3175 3180 3185 3190 3195 3200 3205 3210 3215 3220 3225 3230 3235 3240 3245 3250 3255 3260 3265 3270 3275 3280 3285 3290 3295 3300 3305 3310 3315 3320 3325 3330 3335 3340 3345 3350 3355 3360 3365 3370 3375 3380 3385 3390 3395 3400 3405 3410 3415 3420 3425 3430 3435 3440 3445 3450 3455 3460 3465 3470 3475 3480 3485 3490 3495 3500 3505 3510 3515 3520 3525 3530 3535 3540 3545 3550 3555 3560 3565 3570 3575 3580 3585 3590 3595 3600 3605 3610 3615 3620 3625 3630 3635 3640 3645 3650 3655 3660 3665 3670 3675 3680 3685 3690 3695 3700 3705 3710 3715 3720 3725 3730 3735 3740 3745 3750 3755 3760 3765 3770 3775 3780 3785 3790 3795 3800 3805 3810 3815 3820 3825 3830 3835 3840 3845 3850 3855 3860 3865 3870 3875 3880 3885 3890 3895 3900 3905 3910 3915 3920 3925 3930 3935 3940 3945 3950 3955 3960 3965 3970 3975 3980 3985 3990 3995 4000 10000]
+#define RENODX_SHOULDER_START 36 //[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500]
 #define RENODX_UI_BRIGHTNESS 203 //[20 25 30 35 40 45 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200 203 205 210 215 220 225 230 235 240 245 250 255 260 265 270 275 280 285 290 295 300 305 310 315 320 325 330 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425 430 435 440 445 450 455 460 465 470 475 480 485 490 495 500 505 510 515 520 525 530 535 540 545 550 555 560 565 570 575 580 585 590 595 600 605 610 615 620 625 630 635 640 645 650 655 660 665 670 675 680 685 690 695 700 705 710 715 720 725 730 735 740 745 750 755 760 765 770 775 780 785 790 795 800 805 810 815 820 825 830 835 840 845 850 855 860 865 870 875 880 885 890 895 900 905 910 915 920 925 930 935 940 945 950 955 960 965 970 975 980 985 990 995 1000]
 #define RENODX_GAME_BRIGHTNESS 203 //[20 25 30 35 40 45 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200 203 205 210 215 220 225 230 235 240 245 250 255 260 265 270 275 280 285 290 295 300 305 310 315 320 325 330 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425 430 435 440 445 450 455 460 465 470 475 480 485 490 495 500 505 510 515 520 525 530 535 540 545 550 555 560 565 570 575 580 585 590 595 600 605 610 615 620 625 630 635 640 645 650 655 660 665 670 675 680 685 690 695 700 705 710 715 720 725 730 735 740 745 750 755 760 765 770 775 780 785 790 795 800 805 810 815 820 825 830 835 840 845 850 855 860 865 870 875 880 885 890 895 900 905 910 915 920 925 930 935 940 945 950 955 960 965 970 975 980 985 990 995 1000]
 #define RENODX_CLAMP_COLORSPACE RENODX_BT2020 //[RENODX_NONE RENODX_BT709 RENODX_BT2020 RENODX_AP1]
@@ -33,8 +32,7 @@ DEV NOTES:
 #define RENODX_DEBUG_UNTONEMAPPED 1
 #define RENODX_DEBUG_TONEMAPPED 2
 #define RENODX_DEBUG_SPLIT 3
-#define RENODX_DEBUG_APPCMASK 4
-#define RENODX_DEBUG RENODX_DEBUG_NONE //[RENODX_DEBUG_NONE RENODX_DEBUG_UNTONEMAPPED RENODX_DEBUG_TONEMAPPED RENODX_DEBUG_SPLIT RENODX_DEBUG_APPCMASK]
+#define RENODX_DEBUG RENODX_DEBUG_NONE //[RENODX_DEBUG_NONE RENODX_DEBUG_UNTONEMAPPED RENODX_DEBUG_TONEMAPPED RENODX_DEBUG_SPLIT]
 
 //Color Spaces
 #define RENODX_NONE -1
@@ -42,22 +40,18 @@ DEV NOTES:
 #define RENODX_BT2020 1
 #define RENODX_AP1 2
 
-//ApplyPerChannelCorrection
-#define RENODX_APPC_AMOUNT 45 //[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 100]
-#define RENODX_APPC_POW 1.75 //[0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50 0.55 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.20 1.25 1.30 1.35 1.40 1.45 1.50 1.55 1.60 1.65 1.70 1.75 1.80 1.85 1.90 1.95 2.00 2.05 2.10 2.15 2.20 2.25 2.30 2.35 2.40 2.45 2.50 2.55 2.60 2.65 2.70 2.75 2.80 2.85 2.90 2.95 3.00]
-
 //Saturation
 #define RENODX_SATURATION 100 //[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200]
-#define RENODX_SATURATION_ORDER_AUTO 0
-#define RENODX_SATURATION_ORDER_PRE 1
-#define RENODX_SATURATION_ORDER_POST 2
-#define RENODX_SATURATION_ORDER RENODX_SATURATION_ORDER_AUTO //[RENODX_SATURATION_ORDER_AUTO RENODX_SATURATION_ORDER_PRE RENODX_SATURATION_ORDER_POST]
 
 //Gamma Correction
 #define RENODX_GAMMA_NONE 0
 #define RENODX_GAMMA_22 1
 #define RENODX_GAMMA_24 2
 #define RENODX_GAMMA RENODX_GAMMA_NONE //[RENODX_GAMMA_NONE RENODX_GAMMA_22 RENODX_GAMMA_24]
+
+//RCAS
+#define RENODX_RCAS 0 //[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100]
+//#define RENODX_RCAS_DENOISE
 
 //HDRTONEMAP
 #define RENODX_SCALING_Y 0
@@ -72,7 +66,9 @@ DEV NOTES:
 #define RENODX_HDRTONEMAP_TYPE_GT 3
 #define RENODX_HDRTONEMAP_TYPE_HERMITE 3
 #define RENODX_HDRTONEMAP_TYPE_GT7 4
-#define RENODX_HDRTONEMAP_TYPE RENODX_HDRTONEMAP_TYPE_DEFAULT //[RENODX_HDRTONEMAP_TYPE_OFF RENODX_HDRTONEMAP_TYPE_REINHARD RENODX_HDRTONEMAP_TYPE_ACES RENODX_HDRTONEMAP_TYPE_GT RENODX_HDRTONEMAP_TYPE_GT7 RENODX_HDRTONEMAP_TYPE_HERMITE ]
+#define RENODX_HDRTONEMAP_TYPE_HABLE 5
+#define RENODX_HDRTONEMAP_TYPE_EXPROLL 6
+#define RENODX_HDRTONEMAP_TYPE RENODX_HDRTONEMAP_TYPE_DEFAULT //[RENODX_HDRTONEMAP_TYPE_OFF RENODX_HDRTONEMAP_TYPE_REINHARD RENODX_HDRTONEMAP_TYPE_ACES RENODX_HDRTONEMAP_TYPE_GT RENODX_HDRTONEMAP_TYPE_GT7 RENODX_HDRTONEMAP_TYPE_HERMITE RENODX_HDRTONEMAP_TYPE_EXPROLL]
 
 //Reinhard
 #define RENODX_REINHARD_WHITE_CLIP 100 //[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100]
@@ -97,6 +93,19 @@ DEV NOTES:
 #define RENODX_GT7_BLOW_AMOUNT 0.6 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define RENODX_GT7_BLOW_START 0.98 //[0.50 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 0.98 1.00 1.05 1.10 1.15 1.20 1.25 1.30 1.35 1.40 1.45 1.50 1.55 1.60 1.65 1.70 1.75 1.80 1.85 1.90]
 #define RENODX_GT7_BLOW_END 1.60 //[0.50 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.16 1.20 1.25 1.30 1.35 1.40 1.45 1.50 1.55 1.60 1.65 1.70 1.75 1.80 1.85 1.90 1.95 2.00 2.05 2.10 2.15 2.20 2.25 2.30 2.35 2.40 2.45 2.50] 
+
+//Hable
+// #define RENODX_HABLE_A 0.22 //[0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+// #define RENODX_HABLE_B 0.30 //[0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+// #define RENODX_HABLE_C 0.10 //[0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+// #define RENODX_HABLE_D 0.20 //[0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+// #define RENODX_HABLE_E 0.01 //[0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 0.009 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50]
+// #define RENODX_HABLE_F 0.30 //[0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+// #define RENODX_HABLE_W 11.00 //[0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50 0.55 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00 1.05 1.10 1.15 1.20 1.25 1.30 1.35 1.40 1.45 1.50 1.55 1.60 1.65 1.70 1.75 1.80 1.85 1.90 1.95 2.00 2.05 2.10 2.15 2.20 2.25 2.30 2.35 2.40 2.45 2.50 2.55 2.60 2.65 2.70 2.75 2.80 2.85 2.90 2.95 3.00 3.05 3.10 3.15 3.20 3.25 3.30 3.35 3.40 3.45 3.50 3.55 3.60 3.65 3.70 3.75 3.80 3.85 3.90 3.95 4.00 4.05 4.10 4.15 4.20 4.25 4.30 4.35 4.40 4.45 4.50 4.55 4.60 4.65 4.70 4.75 4.80 4.85 4.90 4.95 5.00 5.05 5.10 5.15 5.20 5.25 5.30 5.35 5.40 5.45 5.50 5.55 5.60 5.65 5.70 5.75 5.80 5.85 5.90 5.95 6.00 6.05 6.10 6.15 6.20 6.25 6.30 6.35 6.40 6.45 6.50 6.55 6.60 6.65 6.70 6.75 6.80 6.85 6.90 6.95 7.00 7.05 7.10 7.15 7.20 7.25 7.30 7.35 7.40 7.45 7.50 7.55 7.60 7.65 7.70 7.75 7.80 7.85 7.90 7.95 8.00 8.05 8.10 8.15 8.20 8.25 8.30 8.35 8.40 8.45 8.50 8.55 8.60 8.65 8.70 8.75 8.80 8.85 8.90 8.95 9.00 9.05 9.10 9.15 9.20 9.25 9.30 9.35 9.40 9.45 9.50 9.55 9.60 9.65 9.70 9.75 9.80 9.85 9.90 9.95 10.00 10.05 10.10 10.15 10.20 10.25 10.30 10.35 10.40 10.45 10.50 10.55 10.60 10.65 10.70 10.75 10.80 10.85 10.90 10.95 11.00 11.05 11.10 11.15 11.20 11.25 11.30 11.35 11.40 11.45 11.50 11.55 11.60 11.65 11.70 11.75 11.80 11.85 11.90 11.95 12.00 12.05 12.10 12.15 12.20 12.25 12.30 12.35 12.40 12.45 12.50 12.55 12.60 12.65 12.70 12.75 12.80 12.85 12.90 12.95 13.00 13.05 13.10 13.15 13.20 13.25 13.30 13.35 13.40 13.45 13.50 13.55 13.60 13.65 13.70 13.75 13.80 13.85 13.90 13.95 14.00 14.05 14.10 14.15 14.20 14.25 14.30 14.35 14.40 14.45 14.50 14.55 14.60 14.65 14.70 14.75 14.80 14.85 14.90 14.95 15.00 15.05 15.10 15.15 15.20 15.25 15.30 15.35 15.40 15.45 15.50 15.55 15.60 15.65 15.70 15.75 15.80 15.85 15.90 15.95 16.00 16.05 16.10 16.15 16.20 16.25 16.30 16.35 16.40 16.45 16.50 16.55 16.60 16.65 16.70 16.75 16.80 16.85 16.90 16.95 17.00 17.05 17.10 17.15 17.20 17.25 17.30 17.35 17.40 17.45 17.50 17.55 17.60 17.65 17.70 17.75 17.80 17.85 17.90 17.95 18.00 18.05 18.10 18.15 18.20 18.25 18.30 18.35 18.40 18.45 18.50 18.55 18.60 18.65 18.70 18.75 18.80 18.85 18.90 18.95 19.00 19.05 19.10 19.15 19.20 19.25 19.30 19.35 19.40 19.45 19.50 19.55 19.60 19.65 19.70 19.75 19.80 19.85 19.90 19.95 20.00]
+// #define RENODX_HABLE_BLOWOUT 0.00 //[0.00 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00]
+
+//Exponential Rolloff
+//nothing
 
 //https://github.com/clshortfuse/renodx/tree/main/src/shaders 
 //https://github.com/clshortfuse/renodx/blob/15b815062f31695be78d7746ec03f9028d724549/src/games/indygreatcircle/include/common.glsl#L4
@@ -209,17 +218,38 @@ const mat3 ODT_SAT_MAT = mat3(
     vec3(0.0471857, 0.9771860, 0.0471857),
     vec3(0.00375827, 0.00375827, 0.93375800));
 
+const mat3 M_renodx = mat3(
+    vec3(0.5, -1.0, 0.5),
+    vec3(-1.0, 1.0, 0.5),
+    vec3(0.5, 0.0, 0.0));
+
 // Y ///////////////////////////////////////////////////////////////////////////
 //const mat3 BT709_TO_XYZ_MAT = mat3(
 //    0.4123907993f, 0.3575843394f, 0.1804807884f, 
 //    0.2126390059f, 0.7151686788f, 0.0721923154f,
 //    0.0193308187f, 0.1191947798f, 0.9505321522f
 //);
-const vec3 BT709_TO_Y_VEC = vec3(0.2126390059, 0.7151686788, 0.0721923154 //y
-);
-float YFromBT709(vec3 bt709) {
-  //return dot(bt709, BT709_TO_XYZ_MAT[1].rgb);
-  return dot(bt709, BT709_TO_Y_VEC);
+const vec3 BT709_TO_Y_VEC = vec3(0.2126390059f, 0.7151686788f, 0.0721923154f);
+const vec3 BT2020_TO_Y_VEC = vec3( 0.2627002120f, 0.6779980715f, 0.0593017165f);
+const vec3 AP1_TO_Y_VEC = vec3(0.2722287168f, 0.6740817658f, 0.0536895174f);
+
+float YFromBT709(vec3 x) {
+  return dot(x, BT709_TO_Y_VEC);
+}
+float YFromBT2020(vec3 x) {
+  return dot(x, BT2020_TO_Y_VEC);
+}
+float YFromAP1(vec3 x) {
+  return dot(x, AP1_TO_Y_VEC);
+}
+float YFromWorkingColorSpace(vec3 x) {
+  #if WORKING_COLOR_SPACE == WORKING_COLOR_SPACE_BT709
+    return YFromBT709(x);
+  #elif WORKING_COLOR_SPACE == WORKING_COLOR_SPACE_BT2020
+    return YFromBT2020(x);
+  #elif WORKING_COLOR_SPACE == WORKING_COLOR_SPACE_AP1
+    return YFromAP1(x);
+  #endif
 }
 
 // Inv Lerp / Rescale //////////////////////////////////////////////////////////////
@@ -381,26 +411,38 @@ vec3 GammeCorrectSafe_PowToSrgb(vec3 c, float gamma) {
 }
 
 //// scRGB ///////////////////////////////////////////////////////////////////////////
+//vec3 ScrgbEncode(vec3 linear) {
+//  return linear / 80.;
+//}
+//vec3 ScrgbDecode(vec3 linear) {
+//  return linear * 80.;
+//}
+//float ScrgbEncode(float linear) {
+//  return linear / 80.;
+//}
+//float ScrgbDecode(float linear) {
+//  return linear * 80.;
+//}
 #define ScrgbDecode(x) (x * 80.)
 #define ScrgbEncode(x) (x / 80.)
 
-// PQ ///////////////////////////////////////////////////////////////////////////
-const vec3 M1 = vec3(2610.f / 16384.f);           // 0.1593017578125f;
-const vec3 M2 = vec3(128.f * (2523.f / 4096.f));  // 78.84375f;
-const vec3 C1 = vec3(3424.f / 4096.f);            // 0.8359375f;
-const vec3 C2 = vec3(32.f * (2413.f / 4096.f));   // 18.8515625f;
-const vec3 C3 = vec3(32.f * (2392.f / 4096.f));   // 18.6875f;
-vec3 PqEncode(vec3 color, float scaling) {
- color *= (scaling / 10000.f);
- vec3 y_m1 = pow(color, M1);
- return pow((C1 + C2 * y_m1) / (1.f + C3 * y_m1), M2);
-}
-
-vec3 PqDecode(vec3 color, float scaling) {
- vec3 e_m12 = pow(color, 1.f / M2);
- vec3 out_color = pow(max(vec3(0), e_m12 - C1) / (C2 - C3 * e_m12), 1.f / M1);
- return out_color * (10000.f / scaling);
-}
+//// PQ ///////////////////////////////////////////////////////////////////////////
+//const vec3 M1 = vec3(2610.f / 16384.f);           // 0.1593017578125f;
+//const vec3 M2 = vec3(128.f * (2523.f / 4096.f));  // 78.84375f;
+//const vec3 C1 = vec3(3424.f / 4096.f);            // 0.8359375f;
+//const vec3 C2 = vec3(32.f * (2413.f / 4096.f));   // 18.8515625f;
+//const vec3 C3 = vec3(32.f * (2392.f / 4096.f));   // 18.6875f;
+//vec3 PqEncode(vec3 color, float scaling) {
+//  color *= (scaling / 10000.f);
+//  vec3 y_m1 = pow(color, M1);
+//  return pow((C1 + C2 * y_m1) / (1.f + C3 * y_m1), M2);
+//}
+//
+//vec3 PqDecode(vec3 color, float scaling) {
+//  vec3 e_m12 = pow(color, 1.f / M2);
+//  vec3 out_color = pow(max(0, e_m12 - C1) / (C2 - C3 * e_m12), 1.f / M1);
+//  return out_color * (10000.f / scaling);
+//}
 
 // CorrectLuminance ///////////////////////////////////////////////////////////////////////////
 vec3 CorrectLuminance(vec3 color, float incorrect_y, float correct_y, float strength) {
@@ -410,53 +452,149 @@ vec3 CorrectLuminance(vec3 incorrect_color, vec3 correct_color, float strength) 
   return CorrectLuminance(incorrect_color, YFromBT709(incorrect_color), YFromBT709(correct_color), strength);
 }
 
-// ICtCp ///////////////////////////////////////////////////////////////////////////
-const mat3 M_renodx = mat3(
-    vec3(0.5, -1.0, 0.5),
-    vec3(-1.0, 1.0, 0.5),
-    vec3(0.5, 0.0, 0.0));
+// RCAS ///////////////////////////////////////////////////////////////////////////
 
-const mat3 XYZ_TO_LMS_MAT = mat3(
-    0.3592832590121217, -0.1920808463704993, 0.0070797844607479,
-    0.6976051147779502, 1.1004767970374321, 0.0748396662186362,
-    -0.0358915932320290, 0.0753748658519118, 0.8433265453898765);
+//https://github.com/Filoppi/Luma-Framework/blob/main/Shaders/Includes/RCAS.hlsl 
 
-const mat3 LMS_TO_XYZ_MAT = mat3(
-    2.0701800566956132, 0.36498825003265756, -0.04959554223893212,
-    -1.3264568761030210, 0.68046736285223520, -0.04942116118675749,
-    0.20661600684785517, -0.045421753075853236, 1.1879959417328034);
+// RCAS (Robust Contrast-Adaptive Sharpening) 
+// https://github.com/GPUOpen-Effects/FidelityFX-FSR2?tab=readme-ov-file#robust-contrast-adaptive-sharpening-rcas
+// 
+// Our implementation is based on: "https://github.com/cdozdil/OptiScaler/blob/master/OptiScaler/shaders/rcas/precompile/rcas.hlsl",
+// which is in turn based on: "https://github.com/RdenBlaauwen/RCAS-for-ReShade",
+// which is in turn based on AMD FSR 1 RCAS: https://github.com/GPUOpen-Effects/FidelityFX-FSR/blob/master/ffx-fsr/ffx_fsr1.h
 
-vec3 IctcpFromBT709(vec3 bt709_color) {
-  vec3 xyz_color = BT709_TO_XYZ_MAT * bt709_color;
-  vec3 lms_color = XYZ_TO_LMS_MAT * xyz_color;
+// Try to detect noise or grain and not over sharpen it. This seemengly assumes the input is in the SDR 0-1 range.
+#ifdef RENODX_RCAS_DENOISE
+  #define RCAS_DENOISE 1
+#else
+  #define RCAS_DENOISE 0
+#endif
+// Lower means less artifacts and "less sharpening", it's unclear what 16 stands for here, and whether this is meant for linear or gamma space (probably gamma space)
+// This is set at the limit of providing unnatural results for sharpening (anything more generates artifacts).
+#ifndef RCAS_LIMIT
+#define RCAS_LIMIT (0.25-(1.0/16.0))
+#endif
+// This should look better, avoid hue shifts and be more compatible with HDR (scRGB, which can have negative values). This appears to have stronger sharpening when enabled, but also causes more black dots to appear at extreme sharpening values.
+// For now it's disabled by default as there's not enough proof to justify it, sharpening is a perceptual trick so hue shifts don't really matter (in fact, possibly they make it better).
+#define RCAS_LUMINANCE_BASED 0
 
-  // mat3 mat = mat3(
-  //     0.5000, 0.5000, 0.0000,
-  //     1.6137, -3.3234, 1.7097,
-  //     4.3780, -4.2455, -0.1325);
-  const mat3 ICTCP_LMS_TO_ICTCP_MAT = mat3(
-      0.5000, 1.6137, 4.3780,
-      0.5000, -3.3234, -4.2455,
-      0.0000, 1.7097, -0.1325);
-
-  return ICTCP_LMS_TO_ICTCP_MAT * PqEncode(lms_color, 100.0f);
+float RCAS_getRCASLuma(vec3 rgb)
+{
+#if 0 // LUMA FT: changed to use the proper Rec.709 luminance formula (but multiplied by 2 as the sum of the original RCAS formula is 2)
+    return GetLuminance(rgb) * 2;
+#else
+    return dot(rgb, vec3(0.5, 1.0, 0.5));
+#endif
 }
 
-vec3 BT709FromICtCp(vec3 col) {
-  // mat3 mat = mat3(1.0, 0.00860514569398152, 0.11103560447547328, 1.0,
-  //                 -0.00860514569398152, -0.11103560447547328, 1.0,
-  //                 0.56004885956263900, -0.32063747023212210);
-  const mat3 ICTCP_TO_LMS_MAT = mat3(
-      1.0, 1.0, 1.0,
-      0.008605146, -0.008605146, 0.56004886,
-      0.11103560, -0.11103560, -0.32063747);
-  col = ICTCP_TO_LMS_MAT * col;
+vec3 RCAS(vec3 color, sampler2D colorTex, ivec2 uv , float sharpness, float paperWhite)
+{
+    // if (sharpness == 0.0f) return color;
+    
+    // RCAS is always "pixel based" (the next 4 pixels)
+    //    b
+    //  d e f
+    //    h
+    // We check for "maxPixelCoord" and "minPixelCoord" to support dynamic resolution scaling. We assume "pixelCoord" is already within the limits.
+    vec3 e = color / paperWhite;
+    vec3 b = texelFetch(colorTex, uv + ivec2( 0,-1), 0).rgb / paperWhite;
+    vec3 d = texelFetch(colorTex, uv + ivec2(-1, 0), 0).rgb / paperWhite;
+    vec3 f = texelFetch(colorTex, uv + ivec2( 1, 0), 0).rgb / paperWhite;
+    vec3 h = texelFetch(colorTex, uv + ivec2( 0, 1), 0).rgb / paperWhite;
 
-  // 1.0f = 100 nits, 100.0f = 10k nits
-  col = PqDecode(col, 100.f);
-  col = LMS_TO_XYZ_MAT * col;
-  return XYZ_TO_BT709_MAT * col;
+#if RCAS_DENOISE >= 1
+    // Get lumas times 2. Should use luma weights that are twice as large as normal.
+    float bL = RCAS_getRCASLuma(b);
+    float dL = RCAS_getRCASLuma(d);
+    float eL = RCAS_getRCASLuma(e);
+    float fL = RCAS_getRCASLuma(f);
+    float hL = RCAS_getRCASLuma(h);
+
+    // denoise
+    float nz = (bL + dL + fL + hL) * 0.25 - eL;
+    float range = max(max(max(bL, dL), max(hL, fL)), eL) - min(min(min(bL, dL), min(eL, fL)), hL);
+    nz = clamp(abs(nz) * rcp(range),0,1);
+    nz = -0.5 * nz + 1.0;
+#endif
+
+    const float samplesNum = 4.0; // There's 4 (5) colors to be mixed
+    // Immediate constants for peak range.
+    const vec2 peakC = vec2(1.0, -samplesNum);
+
+#if RCAS_LUMINANCE_BASED
+    // These should all be >= 0, but tiny values below zero shouldn't hurt anyway, still, we clip them below as they'd be clipped by the screen anyway
+    float bLum = YFromWorkingColorSpace(b);
+    float dLum = YFromWorkingColorSpace(d);
+    float eLum = YFromWorkingColorSpace(e);
+    float fLum = YFromWorkingColorSpace(f);
+    float hLum = YFromWorkingColorSpace(h);
+
+    float minLum = max(min(min(bLum, dLum), min(fLum, hLum)), 0.0);
+    float maxLum = max(max(bLum, dLum), max(fLum, hLum));
+
+    float hitMin = minLum * rcp(samplesNum * maxLum);
+    float hitMax = (peakC.x - maxLum) * rcp(samplesNum * minLum + peakC.y);
+
+    float localLobe = max(-hitMin, hitMax);
+#else // !RCAS_LUMINANCE_BASED
+    // Min and max of ring.
+    vec3 minRGB = min(min(b, d), min(f, h));
+    vec3 maxRGB = max(max(b, d), max(f, h));
+
+#if 0 // It seems like it's ok if these values aren't in the 0-1 range, the code below will still work as expected, and avoid clipping HDR (or anyway ignoring values beyond SDR) //TODOFT3: Lilium claims the code below can break for negative rgb (scRGB) values, investigate and fix it
+    minRGB = clamp(minRGB, 0, 1);
+    maxRGB = clamp(maxRGB, 0, 1);
+#endif
+
+    // Limiters, these need to use high precision reciprocal operations.
+    // Decided to use standard rcp for now in hopes of optimizing it.
+    // It's fine if either of these can go below zero!
+    vec3 hitMin = minRGB * rcp(samplesNum * maxRGB);
+    vec3 hitMax = (peakC.xxx - maxRGB) * rcp(samplesNum * minRGB + peakC.yyy);
+
+    vec3 lobeRGB = max(-hitMin, hitMax);
+#if 0 // An attempt to make this code, which branches by r g b channel, color space agnostic. Without this, the result heavily depends by where the rgb coordinates are in the CIE color graph, and by how luminous they are. Unfortunately this drastically reduces the sharpening intensity, even if it makes it look even more natural.
+    float localLobe = max(lobeRGB.r * Rec709_Luminance.r * 3.0, max(lobeRGB.g * Rec709_Luminance.g * 3.0, lobeRGB.b * Rec709_Luminance.b * 3.0));
+#else
+    float localLobe = max(lobeRGB.r, max(lobeRGB.g, lobeRGB.b));
+#endif
+#endif // RCAS_LUMINANCE_BASED
+
+    float lobe = max(-RCAS_LIMIT, min(localLobe, 0.0)) * sharpness;
+
+#if RCAS_DENOISE >= 1
+    // denoise
+    lobe *= nz;
+#endif
+
+    // Resolve, which needs medium precision rcp approximation to avoid visible tonality changes.
+    float rcpL = rcp(samplesNum * lobe + 1.0);
+    
+#if RCAS_LUMINANCE_BASED
+    float outputLum = ((bLum + dLum + hLum + fLum) * lobe + eLum) * rcpL;
+    // Questionable choice: in case the source center pixel had luminance zero (even if the rgb ratio wasn't flat), elevate it to grey and match the target luminance, or we'd have a division by zero.
+    // The alternative would be to keep "e" intact, but that then wouldn't have applied any sharpening.
+    vec3 output1 = eLum != 0 ? (e * (outputLum / eLum)) : outputLum;
+#else // !RCAS_LUMINANCE_BASED
+    vec3 output1 = ((b + d + f + h) * lobe + e) * rcpL;
+#endif // RCAS_LUMINANCE_BASED
+
+#if 0 // Debug
+    if (dynamicSharpening)
+    {
+        if (originalSharpness < sharpness)
+            output.r *= 1 + (12.0 * (sharpness - originalSharpness));
+        else
+            output.g *= 1 + (12.0 * (originalSharpness - sharpness));
+    }
+#endif
+
+    output1 *= paperWhite;
+
+    return output1;
 }
+
+#endif // SRC_RCAS_HLSL
 
 // OKLab ///////////////////////////////////////////////////////////////////////////
 //By Björn Ottosson
@@ -553,123 +691,6 @@ vec3 UpgradeToneMap(
   return mix(color_untonemapped, color_scaled, post_process_strength);
 }
 
-// Apply Per Channel Correction ////////////////////////////////////////////////////////
-struct ApplyPerChannelCorrectionResult {
-  vec3 corrected_color;
-  float tonemapped_luminance;
-};
-ApplyPerChannelCorrectionResult ApplyPerChannelCorrection_Internal(
-    vec3 untonemapped,
-    vec3 per_channel_color,
-    float blowout_restoration,
-    float hue_correction_strength,
-    float chrominance_correction_strength,
-    float hue_shift_strength) {
-  ApplyPerChannelCorrectionResult result;
-
-  float tonemapped_luminance = YFromBT709(abs(per_channel_color));
-  result.tonemapped_luminance = tonemapped_luminance;
-
-  const float AUTO_CORRECT_BLACK = 0.02;
-  // Fix near black
-  float untonemapped_luminance = YFromBT709(abs(untonemapped));
-  float ratio = tonemapped_luminance / untonemapped_luminance;
-  float auto_correct_ratio = mix(ratio, 1.0,
-                                 clamp(untonemapped_luminance / AUTO_CORRECT_BLACK, 0.0, 1.0));
-  untonemapped *= auto_correct_ratio;
-
-  vec3 tonemapped_perceptual = IctcpFromBT709(per_channel_color);
-  vec3 untonemapped_perceptual = IctcpFromBT709(untonemapped);
-
-  vec2 untonemapped_chromas = untonemapped_perceptual.yz;
-  vec2 tonemapped_chromas = tonemapped_perceptual.yz;
-
-  float untonemapped_chrominance = length(untonemapped_perceptual.yz);  // eg: 0.80
-  float tonemapped_chrominance = length(tonemapped_perceptual.yz);      // eg: 0.20
-
-  // clamp saturation loss
-  float chrominance_ratio = min(DivideSafe(tonemapped_chrominance,
-                                           untonemapped_chrominance, 1.0),
-                                1.0);
-  chrominance_ratio = max(chrominance_ratio, blowout_restoration);
-
-  // Untonemapped hue, tonemapped chrominance (with limit)
-  vec2 reduced_untonemapped_chromas = untonemapped_chromas * chrominance_ratio;
-
-  // pick chroma based on per-channel luminance (supports not oversaturating crushed areas)
-  vec2 reduced_hue_shifted = mix(
-      tonemapped_chromas,
-      reduced_untonemapped_chromas,
-      clamp(tonemapped_luminance / 0.36, 0.0, 1.0));
-
-  // Tonemapped hue, restored chrominance (with limit)
-  vec2 blowout_restored_chromas = tonemapped_chromas * DivideSafe(length(reduced_hue_shifted), length(tonemapped_chromas), 1.0);
-
-  vec2 hue_shifted_chromas = mix(reduced_hue_shifted,
-                                       blowout_restored_chromas,
-                                       hue_shift_strength);
-
-  // Pick untonemapped hues for shadows/midtones
-  vec2 hue_correct_chromas = untonemapped_chromas * DivideSafe(length(hue_shifted_chromas), length(untonemapped_chromas), 1.0);
-
-  vec2 selectable_hue_correct_range = mix(
-      hue_correct_chromas,
-      hue_shifted_chromas,
-      clamp(tonemapped_luminance / 0.36, 0.0, 1.0));
-
-  vec2 hue_corrected_chromas = mix(hue_shifted_chromas,
-                                         selectable_hue_correct_range,
-                                         hue_correction_strength);
-
-  vec2 chroma_correct_chromas = hue_corrected_chromas * DivideSafe(length(untonemapped_chromas), length(hue_corrected_chromas), 1.0);
-
-  vec2 selectable_chroma_correct_range = mix(
-      chroma_correct_chromas,
-      hue_corrected_chromas,
-      clamp(tonemapped_luminance / 0.36, 0.0, 1.0));
-
-  vec2 chroma_corrected_chromas = mix(
-      hue_correct_chromas,
-      selectable_chroma_correct_range,
-      chrominance_correction_strength);
-
-  vec2 final_chromas = chroma_corrected_chromas;
-
-  result.corrected_color = BT709FromICtCp(vec3(
-      tonemapped_perceptual.x,
-      final_chromas));
-  
-  return result;
-}
-
-vec3 ApplyPerChannelCorrection(vec3 untonemapped, vec3 per_channel_color) {
-#if RENODX_APPC_AMOUNT == 0
-  return per_channel_color;
-#else
-  ApplyPerChannelCorrectionResult result = ApplyPerChannelCorrection_Internal(
-      untonemapped,
-      per_channel_color,
-      0.5,
-      1.0,
-      1.0,
-      0.5);
-
-  #if RENODX_APPC_POW > 0
-    float strength = result.tonemapped_luminance;
-    strength = clamp(strength, 0.0, 1.0);
-    strength = pow(strength, RENODX_APPC_POW);
-    #if RENODX_DEBUG == RENODX_DEBUG_APPCMASK
-      return vec3(strength);
-    #else
-      strength *= RENODX_APPC_AMOUNT * 0.01;
-      return mix(per_channel_color, result.corrected_color, strength);
-    #endif
-  #else
-    return result.corrected_color;
-  #endif
-#endif
-}
-
 // Working Color Space ////////////////////////////////////////////////////////////////
 
 vec3 WorkingColorSpace_Encode(vec3 x) {
@@ -736,22 +757,40 @@ float ComputeReinhardExtendableScale(float w, float p, float m, float x, float y
   return p * (w * w * y - (p * x * x)) / (w * w * x * (p - y));
 }
 
-vec3 ReinhardScalableExtended(vec3 x, float white_max, float x_max, float x_min, float gray_in, float gray_out) {
-  float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, gray_in, gray_out);
-  vec3 extended = ReinhardExtended(x * exposure, white_max * exposure, x_max);
-  return min(extended, x_max);
+// vec3 ReinhardScalableExtended(vec3 x, float white_max, float x_max, float x_min, float gray_in, float gray_out) {
+//   float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, gray_in, gray_out);
+//   vec3 extended = ReinhardExtended(x * exposure, white_max * exposure, x_max);
+//   return min(extended, x_max);
+// }
+// vec3 ReinhardScalableExtendedY(vec3 x, float white_max, float x_max, float x_min, float gray_in, float gray_out) {
+//   float y0 = YFromBT709(x);
+//   float y1 = y0;
+// 
+//   float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, gray_in, gray_out);
+//   float extended = ReinhardExtended(y1 * exposure, white_max * exposure, x_max);
+//   y1 = min(extended, x_max);
+// 
+//   //color_output = input_color * (y_original > 0 ? (y_new / y_original) : 0);
+//   x = x * (y0 > 0 ? (y1 / y0) : 0);
+//   return x;
+// }
+vec3 ReinhardPiecewiseExtended(vec3 x, float white_max, float x_max, float shoulder) //From Musa (I think)
+{
+   const float x_min = 0.f;
+   float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, shoulder, shoulder);
+   vec3 extended = ReinhardExtended(x * exposure, white_max * exposure, x_max);
+   extended = min(extended, x_max);
+
+   return mix(x, extended, step(shoulder, x));
 }
-vec3 ReinhardScalableExtendedY(vec3 x, float white_max, float x_max, float x_min, float gray_in, float gray_out) {
-  float y0 = YFromBT709(x);
-  float y1 = y0;
+float ReinhardPiecewiseExtended(float x, float white_max, float x_max, float shoulder) //From Musa (I think)
+{
+   const float x_min = 0.f;
+   float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, shoulder, shoulder);
+   float extended = ReinhardExtended(x * exposure, white_max * exposure, x_max);
+   extended = min(extended, x_max);
 
-  float exposure = ComputeReinhardExtendableScale(white_max, x_max, x_min, gray_in, gray_out);
-  float extended = ReinhardExtended(y1 * exposure, white_max * exposure, x_max);
-  y1 = min(extended, x_max);
-
-  //color_output = input_color * (y_original > 0 ? (y_new / y_original) : 0);
-  x = x * (y0 > 0 ? (y1 / y0) : 0);
-  return x;
+   return mix(x, extended, step(shoulder, x));
 }
 
 vec3 ToneMapPass_Reinhard(vec3 color) {
@@ -760,16 +799,17 @@ vec3 ToneMapPass_Reinhard(vec3 color) {
   color = WorkingGammaCorrection(color);
 
   //setup
-  const float nits_peak = RENODX_PEAK_BRIGHTNESS. / RENODX_GAME_BRIGHTNESS.;
-  const float mid_gray_value = 0.18f;
-  const float mid_gray_nits = 0.18f;
+  const float peak = (RENODX_PEAK_BRIGHTNESS. / RENODX_GAME_BRIGHTNESS.);
+  const float shoulder = (RENODX_SHOULDER_START. / RENODX_GAME_BRIGHTNESS.);
   const float white_clip = RENODX_REINHARD_WHITE_CLIP;
 
   //do
   #if RENODX_SCALING == RENODX_SCALING_Y
-    color = ReinhardScalableExtendedY(color, white_clip, nits_peak, 0, mid_gray_value, mid_gray_nits);
+    float y = YFromBT709(color);
+    float y1 = ReinhardPiecewiseExtended(y, white_clip, peak, shoulder);
+    color *= y1 / max(y, 0.000001);
   #else
-    color = ReinhardScalableExtended(color, white_clip, nits_peak, 0, mid_gray_value, mid_gray_nits);
+    color = ReinhardPiecewiseExtended(color, white_clip, peak, shoulder);
   #endif
 
   color = WorkingColorSpace_Decode(color);
@@ -832,16 +872,8 @@ float GTTonemapY(
   float L_ = m + a * (x - m); 
                                             
   return T_ * w0 + L_ * w1 + S_ * w2;
-}
+}                                        
 
-float ExponentialRollOff(float input, float rolloff_start /* = 0.20f */, float output_max /* = 1.0f */) { 
-  float rolloff_size = output_max - rolloff_start;                                        
-  float overage = -max(0, input - rolloff_start);                                      
-  float rolloff_value = 1.0f - exp(overage / rolloff_size);                            
-  float new_overage = rolloff_size * rolloff_value + overage;                          
-  return input + new_overage;                                                         
-}
-                                          
 vec3 ToneMapPass_GTTonemap(vec3 color) {
   color = WorkingColorSpace_Encode(color);
   color = max(vec3(0), color);
@@ -1784,10 +1816,360 @@ vec3 ToneMapPass_GT7(vec3 color) {
   return color;
 }
 
+// Exponential Rolloff ///////////////////////////////////////////////////////////////////////////
+
+vec3 ExponentialRollOff(vec3 input, float rolloff_start, float output_max) { 
+  vec3 rolloff_size = vec3(output_max - rolloff_start);
+  vec3 overage = -max(vec3(0), input - rolloff_start);
+  vec3 rolloff_value = vec3(1.0f) - exp(overage / rolloff_size);     
+  vec3 new_overage = rolloff_size * rolloff_value + overage;
+  return input + new_overage;
+}
+float ExponentialRollOff(float input, float rolloff_start, float output_max) { 
+  float rolloff_size = output_max - rolloff_start;
+  float overage = -max(0, input - rolloff_start);
+  float rolloff_value = 1.0f - exp(overage / rolloff_size);
+  float new_overage = rolloff_size * rolloff_value + overage;
+  return input + new_overage;
+}
+
+vec3 ToneMapPass_ExponentialRollOff(vec3 color) {
+  color = WorkingColorSpace_Encode(color);
+  color = max(vec3(0), color);
+  color = WorkingGammaCorrection(color);
+
+  //setup
+  const float peak = (RENODX_PEAK_BRIGHTNESS. / RENODX_GAME_BRIGHTNESS.);
+  const float shoulder = (RENODX_SHOULDER_START. / RENODX_GAME_BRIGHTNESS.);
+
+  //do
+  #if RENODX_SCALING == RENODX_SCALING_Y
+    float y0 = YFromBT709(color);
+    float y = ExponentialRollOff(y0, shoulder, peak);
+    color *= y/y0;
+  #else
+    color = ExponentialRollOff(color, shoulder, peak);
+  #endif
+  
+  color = WorkingColorSpace_Decode(color);
+
+  return color;
+}
+
+
+// Uncharted2 / Hable Extended //////////////////////////////////////////////////////////////////////////////
+//https://github.com/mqhaji/renodx/blob/main/src/games/batmanak/uncharted2extended.hlsli
+
+float Hable_ApplyCurve(float x, float a, float b, float c, float d, float e, float f) {
+  float numerator = x * (a * x + c * b) + d * e;  // x * (a * x + c * b) + d * e
+  float denominator = x * (a * x + b) + d * f;    // x * (a * x + b) + d * f
+  return (numerator / denominator) - (e / f);
+}
+
+vec3 Hable_ApplyCurve(vec3 x, float a, float b, float c, float d, float e, float f) {
+  vec3 numerator = x * (a * x + c * b) + d * e;  // x * (a * x + c * b) + d * e
+  vec3 denominator = x * (a * x + b) + d * f;    // x * (a * x + b) + d * f
+  return (numerator / denominator) - (e / f);
+}
+
+float Hable_InverseUncharted2(
+    float y, float W,
+    float A, float B, float C, float D, float E, float F) {
+  // 1. Recover raw ApplyCurve output: y_raw = y * ApplyCurve(W)
+  float rawW = Hable_ApplyCurve(W, A, B, C, D, E, F);
+  float y_raw = y * rawW;
+
+  // 2. Solve inverse of ApplyCurve analytically (quadratic)
+  float ef = E / F;
+  float yp = y_raw + ef;
+
+  // Quadratic coefficients:
+  // A_q x^2 + B_q x + C_q = 0
+  float A_q = A * (yp - 1.0);
+  float B_q = B * (yp - C);
+  float C_q = D * (F * yp - E);
+
+  // Quadratic discriminant
+  float disc = B_q * B_q - 4.0 * A_q * C_q;
+  disc = max(disc, 0.0);
+  float sqrtD = sqrt(disc);
+
+  float x1 = (-B_q + sqrtD) / (2.0 * A_q);
+  float x2 = (-B_q - sqrtD) / (2.0 * A_q);
+
+  // pick the physically meaningful root (positive, usually x1)
+  return max(x1, x2);
+}
+
+vec3 Hable_InverseUncharted2(
+    vec3 color, float W,
+    float A, float B, float C, float D, float E, float F) {
+  return vec3(
+      Hable_InverseUncharted2(color.r, W, A, B, C, D, E, F),
+      Hable_InverseUncharted2(color.g, W, A, B, C, D, E, F),
+      Hable_InverseUncharted2(color.b, W, A, B, C, D, E, F));
+}
+
+float Hable_Derivative(
+    float x,
+    float a, float b, float c,
+    float d, float e, float f) {
+  float num = -a * b * (c - 1.0) * x * x
+              + 2.0 * a * d * (f - e) * x
+              + b * d * (c * f - e);
+
+  float den = x * (a * x + b) + d * f;
+  den = den * den;
+
+  return num / den;
+}
+
+// Root of f'(x) = 0 for the raw ApplyCurve, using quadratic formula.
+// With a,b,c,d,e,f > 0 and 0 < c < 1, this is well-defined.
+float Hable_FindDerivativeRoot(
+    float a, float b, float c,
+    float d, float e, float f) {
+  // Quadratic coefficients for numerator of f'(x)
+  // -a*b*(c - 1) * x^2 + 2*a*d*(f - e)*x + b*d*(c*f - e) = 0
+  float Aq = a * b * (1.f - c);  // -a*b*(c-1)
+  float Bq = 2.f * a * d * (f - e);
+  float Cq = b * d * (c * f - e);
+
+  // Discriminant
+  float disc = Bq * Bq - 4.f * Aq * Cq;
+  disc = max(disc, 0.f);  // just in case of tiny negatives
+
+  float sqrtDisc = sqrt(disc);
+
+  float r1 = (-Bq + sqrtDisc) / (2.f * Aq);
+  float r2 = (-Bq - sqrtDisc) / (2.f * Aq);
+
+  // Larger root of the quadratic
+  float root = max(r1, r2);
+
+  // Only care about non-negative x in our domain
+  return max(root, 0.f);
+}
+
+// Analytic knee root of f'''(x) = 0 for Uncharted2/Hable ApplyCurve
+// a,b,c,d,e,f > 0, typically 0 < c < 1.
+// Returns the smallest positive real root ("first knee") in x > 0.
+float Hable_FindThirdDerivativeRoot(float a, float b, float c, float d, float e, float f) {
+  // sqrt(a b^2 c^2 - 2 a b^2 c + a b^2)
+  float sqrt_ab = sqrt(
+      a * b * b * c * c
+      - 2.f * a * b * b * c
+      + a * b * b);
+
+  // sqrt(a d^2 e^2 - 2 a d^2 e f + a d^2 f^2
+  //    + b^2 c^2 d f + b^2 (-c) d e - b^2 c d f + b^2 d e)
+  float sqrt_df = sqrt(
+      a * d * d * e * e
+      - 2.f * a * d * d * e * f
+      + a * d * d * f * f
+      + b * b * c * c * d * f
+      + b * b * (-c) * d * e
+      - b * b * c * d * f
+      + b * b * d * e);
+
+  // Precompute (d e - d f)
+  float de_df = d * e - d * f;
+
+  // Inner big piece: sqrt_ab * (...) / (8 * sqrt_df)
+  float term_top =
+      32.f * (a * d * d * e * f - a * d * d * f * f + b * b * c * d * f - b * b * d * e)
+      / (a * a * b * (c - 1.f));
+
+  float term_mid =
+      96.f * de_df * (c * d * f - d * e)
+      / (a * b * (c - 1.f) * (c - 1.f));
+
+  float de_df2 = de_df * de_df;
+  float de_df3 = de_df2 * de_df;
+
+  float term_tail =
+      64.f * de_df3
+      / (b * b * b * (c - 1.f) * (c - 1.f) * (c - 1.f));
+
+  float Tfrac = sqrt_ab * (term_top - term_mid - term_tail)
+                / (8.f * sqrt_df);
+
+  // (12 a^2 b c d f - 12 a^2 b d e) / (6 (a^3 b c - a^3 b))
+  float Tmid2_num = 12.f * a * a * b * c * d * f
+                    - 12.f * a * a * b * d * e;
+  float Tmid2_den = 6.f * (a * a * a * b * c - a * a * a * b);
+  float Tmid2 = Tmid2_num / Tmid2_den;
+
+  // (6 (c d f - d e))/(a (c - 1))
+  float T3 = 6.f * (c * d * f - d * e)
+             / (a * (c - 1.f));
+
+  // (8 (d e - d f)^2)/(b^2 (c - 1)^2)
+  float T4 = 8.f * de_df2
+             / (b * b * (c - 1.f) * (c - 1.f));
+
+  // Centers for the ± branches
+  float centerNeg = -Tfrac + Tmid2 + T3 + T4;  // used with sqrt(-centerNeg)
+  float centerPos = Tfrac + Tmid2 + T3 + T4;   // used with sqrt( centerPos)
+
+  // Branch square roots: use SignSqrt for robustness and correct branch behaviour
+  float sNeg = SignSqrt(-centerNeg);
+  float sPos = SignSqrt(centerPos);
+
+  // Shifts:
+  //  - first two roots use:  - sqrt_df/sqrt_ab - (d e - d f)/(b (c - 1))
+  //  - last two use:          sqrt_df/sqrt_ab - (d e - d f)/(b (c - 1))
+  float shift1 = sqrt_df / sqrt_ab + de_df / (b * (c - 1.f));  // we subtract this
+  float shift2 = sqrt_df / sqrt_ab - de_df / (b * (c - 1.f));  // we add this
+
+  // The four analytic roots from WA, mapped to floats:
+  float r1 = -0.5f * sNeg - shift1;  // -1/2 * sqrt(-centerNeg) - shift1
+  float r2 = 0.5f * sNeg - shift1;   //  1/2 * sqrt(-centerNeg) - shift1
+  float r3 = -0.5f * sPos + shift2;  // -1/2 * sqrt( centerPos) + shift2
+  float r4 = 0.5f * sPos + shift2;   //  1/2 * sqrt( centerPos) + shift2
+
+  // Max root seems to be always be the right one
+  float root = clamp(max(r1, max(r2, max(r3, r4))), 0, 1);
+
+  return root;
+}
+
+struct Hable_Uncharted2ExtendedConfig {
+  float pivot_point;
+  float white_precompute;
+  float coeffs[6];  // A,B,C,D,E,F
+};
+
+Hable_Uncharted2ExtendedConfig Hable_CreateUncharted2ExtendedConfig(
+    float pivot_point,
+    float coeffs[6], float white_precompute) {
+  Hable_Uncharted2ExtendedConfig cfg;
+  cfg.pivot_point = pivot_point;
+  cfg.white_precompute = white_precompute;
+  cfg.coeffs = coeffs;
+
+  return cfg;
+}
+
+Hable_Uncharted2ExtendedConfig Hable_CreateUncharted2ExtendedConfig(float coeffs[6], float white_precompute) {
+  float pivot_point = Hable_FindThirdDerivativeRoot(coeffs[0], coeffs[1], coeffs[2], coeffs[3], coeffs[4], coeffs[5]);
+  return Hable_CreateUncharted2ExtendedConfig(pivot_point, coeffs, white_precompute);
+}
+
+float Hable_ApplyExtended(                                                                             
+    float x, float base, float pivot_point, float white_precompute,
+    float A, float B, float C, float D, float E, float F) {                                  
+  float pivot_x = pivot_point;
+  float pivot_y = Hable_ApplyCurve(pivot_x, A, B, C, D, E, F) * white_precompute;
+  float slope = Hable_Derivative(pivot_x, A, B, C, D, E, F) * white_precompute;
+  float offset = pivot_y - slope * pivot_x;
+
+  float extended = slope * x + offset; 
+
+  return mix(base, extended, step(pivot_x, x));
+}
+float Hable_ApplyExtended(float x, float base, Hable_Uncharted2ExtendedConfig uc2_config) {
+  return Hable_ApplyExtended(
+      x, base, uc2_config.pivot_point, uc2_config.white_precompute,
+      uc2_config.coeffs[0], uc2_config.coeffs[1], uc2_config.coeffs[2],
+      uc2_config.coeffs[3], uc2_config.coeffs[4], uc2_config.coeffs[5]);
+}
+float Hable_ApplyExtended(float x, Hable_Uncharted2ExtendedConfig uc2_config) {
+  float base =
+      Hable_ApplyCurve(x, uc2_config.coeffs[0], uc2_config.coeffs[1], uc2_config.coeffs[2],
+                                  uc2_config.coeffs[3], uc2_config.coeffs[4], uc2_config.coeffs[5])
+      * uc2_config.white_precompute;
+  return Hable_ApplyExtended(x, base, uc2_config);
+}
+
+vec3 Hable_ApplyExtended(                                                                             
+    vec3 x, vec3 base, float pivot_point, float white_precompute,
+    float A, float B, float C, float D, float E, float F) {                                  
+  float pivot_x = pivot_point;
+  float pivot_y = Hable_ApplyCurve(pivot_x, A, B, C, D, E, F) * white_precompute;
+  float slope = Hable_Derivative(pivot_x, A, B, C, D, E, F) * white_precompute;
+  vec3 offset = vec3(pivot_y - slope * pivot_x);
+
+  vec3 extended = vec3(slope) * x + offset;
+
+  return mix(base, extended, step(vec3(pivot_x), x));
+}
+vec3 Hable_ApplyExtended(vec3 x, vec3 base, Hable_Uncharted2ExtendedConfig uc2_config) {
+  return Hable_ApplyExtended(
+      x, base, uc2_config.pivot_point, uc2_config.white_precompute,
+      uc2_config.coeffs[0], uc2_config.coeffs[1], uc2_config.coeffs[2],
+      uc2_config.coeffs[3], uc2_config.coeffs[4], uc2_config.coeffs[5]);
+}
+vec3 Hable_ApplyExtended(vec3 x, Hable_Uncharted2ExtendedConfig uc2_config) {
+  vec3 base =
+      Hable_ApplyCurve(x, uc2_config.coeffs[0], uc2_config.coeffs[1], uc2_config.coeffs[2],
+                                  uc2_config.coeffs[3], uc2_config.coeffs[4], uc2_config.coeffs[5])
+      * uc2_config.white_precompute;
+  return Hable_ApplyExtended(x, base, uc2_config);
+}
+
+vec3 ToneMapPass_Hable(vec3 color) {
+  color = WorkingColorSpace_Encode(color);
+  color = max(vec3(0), color);
+  color = WorkingGammaCorrection(color);
+
+  //boost
+  color *= 2.0;
+
+  //setup
+  float[6] coeffs = float[6]( RENODX_HABLE_A, RENODX_HABLE_B, RENODX_HABLE_C, RENODX_HABLE_D, RENODX_HABLE_E, RENODX_HABLE_F );
+  float white_precompute = 1.f / Hable_ApplyCurve(RENODX_HABLE_W, RENODX_HABLE_A, RENODX_HABLE_B, RENODX_HABLE_C, RENODX_HABLE_D, RENODX_HABLE_E, RENODX_HABLE_F);
+  Hable_Uncharted2ExtendedConfig uc2_config = Hable_CreateUncharted2ExtendedConfig(coeffs, white_precompute);
+
+  const float peak = (RENODX_PEAK_BRIGHTNESS. / RENODX_GAME_BRIGHTNESS.);
+  const float shoulder = (RENODX_SHOULDER_START. / RENODX_GAME_BRIGHTNESS.);
+
+  //do
+  #if RENODX_SCALING == RENODX_SCALING_Y
+    color *= vec3(1,0,0); //NOT SUPPORTED
+  #else
+    //tonemap
+    // vec3 colorSDR = Hable_ApplyCurve(color, RENODX_HABLE_A, RENODX_HABLE_B, RENODX_HABLE_C, RENODX_HABLE_D, RENODX_HABLE_E, RENODX_HABLE_F) / 
+    //                 Hable_ApplyCurve(RENODX_HABLE_W, RENODX_HABLE_A, RENODX_HABLE_B, RENODX_HABLE_C, RENODX_HABLE_D, RENODX_HABLE_E, RENODX_HABLE_F);
+    color = Hable_ApplyExtended(color, uc2_config);
+
+
+    //blowout
+    color = WorkingColorSpace_Decode(color); //bruh
+    // colorSDR = WorkingColorSpace_Decode(colorSDR); //bruh
+
+    vec3 colorOk = oklab_from_linear(color);
+    // vec3 colorSDROk = oklab_from_linear(colorSDR);
+
+    // colorSDROk.x = clamp(colorSDROk.x, 0.0, 1.0);
+    // colorOk.yz = mix(colorOk.yz, colorSDROk.yz, pow(colorSDROk.x, 16) * RENODX_HABLE_BLOWOUT);
+
+    //RenoDRT Blowout
+    float percent_max = clamp(colorOk.x * 0.21, 0.f, 0.99f); 
+    percent_max *= percent_max;
+    float blowout_strength = 100.f;
+    float blowout_change = pow(1.f - percent_max, blowout_strength * 0.002); //just a tiniest for the brightest.
+    colorOk.yz *= blowout_change;
+
+    color = linear_from_oklab(colorOk);
+
+    color = WorkingColorSpace_Encode(color); //bruh
+
+    //to output peak
+    float y0 = YFromWorkingColorSpace(color);
+    float y = ExponentialRollOff(y0, 0.18, peak);
+    color *= y/y0;
+  #endif
+  
+  color = WorkingColorSpace_Decode(color);
+
+  return color;
+}
+
 // None ///////////////////////////////////////////////////////////////////////////
 vec3 ToneMapPass_None(vec3 color) {
   color = WorkingColorSpace_Encode(color);
-  // color = max(vec3(0), color);
+  color = max(vec3(0), color);
 
   color = WorkingGammaCorrection(color);  
 
@@ -1821,13 +2203,14 @@ vec3 ToneMapPass(vec3 color_untonemapped, vec3 color_tonemapped, vec2 uv) {
     result = UpgradeToneMap(color_untonemapped, Reinhard(color_untonemapped), color_tonemapped, RENODX_UPGRADE_AMOUNT, RENODX_UPGRADE_AUTO); 
   #endif
 
-  //saturation (pre)
-  #if RENODX_SATURATION != 100 && (RENODX_SATURATION_ORDER == RENODX_SATURATION_ORDER_PRE || (RENODX_SATURATION_ORDER == RENODX_SATURATION_ORDER_AUTO && RENODX_SCALING == RENODX_SCALING_PERCHANNEL))
+  //saturation
+  #if RENODX_SATURATION != 100
     result = SaturationOKLab(result, RENODX_SATURATION / 100.);
   #endif
 
   //exposure
   result *= RENODX_EXPOSURE;
+      
   
   //Tonemap HDR (working color space and gamma correction inside)
   #if RENODX_HDRTONEMAP_TYPE > RENODX_HDRTONEMAP_TYPE_OFF
@@ -1842,17 +2225,16 @@ vec3 ToneMapPass(vec3 color_untonemapped, vec3 color_tonemapped, vec2 uv) {
       result = ToneMapPass_GT7(result);
     #elif RENODX_HDRTONEMAP_TYPE == RENODX_HDRTONEMAP_TYPE_HERMITE
       result = ToneMapPass_Hermite(result);
+    #elif RENODX_HDRTONEMAP_TYPE == RENODX_HDRTONEMAP_TYPE_HABLE
+      result = ToneMapPass_Hable(result);
+    #elif RENODX_HDRTONEMAP_TYPE == RENODX_HDRTONEMAP_TYPE_EXPROLL
+      result = ToneMapPass_ExponentialRollOff(result);
     #endif
 
     //clamp peak
     result = min(vec3(RENODX_PEAK_BRIGHTNESS. / RENODX_GAME_BRIGHTNESS.), result);
   #else
     result = ToneMapPass_None(result);
-  #endif
-
-  //saturation (post)
-  #if RENODX_SATURATION != 100 && (RENODX_SATURATION_ORDER == RENODX_SATURATION_ORDER_POST || (RENODX_SATURATION_ORDER == RENODX_SATURATION_ORDER_AUTO && RENODX_SCALING == RENODX_SCALING_Y))
-    result = SaturationOKLab(result, RENODX_SATURATION / 100.);
   #endif
 #else
   result = color_tonemapped;
@@ -1892,13 +2274,14 @@ vec3 RenderIntermediatePass(vec3 color) {
 //shaders.properties
 # RenoDX
 screen.renodx = RENODX_PEAK_BRIGHTNESS RENODX_GAME_BRIGHTNESS RENODX_UI_BRIGHTNESS RENODX_CLAMP_COLORSPACE <empty> \
-RENODX_UPGRADE_ENABLED RENODX_UPGRADE_AMOUNT RENODX_UPGRADE_AUTO RENODX_APPC_AMOUNT RENODX_APPC_POW <empty> \
-RENODX_GAMMA RENODX_EXPOSURE RENODX_SATURATION RENODX_SATURATION_ORDER <empty> \
-RENODX_HDRTONEMAP_TYPE [renodx_reinhard] [renodx_aces] [renodx_gt] [renodx_gt7] [renodx_hermite] <empty> \
+RENODX_UPGRADE_ENABLED RENODX_UPGRADE_AMOUNT RENODX_UPGRADE_AUTO <empty> \
+RENODX_SATURATION RENODX_GAMMA RENODX_EXPOSURE <empty> \
+RENODX_RCAS RENODX_RCAS_DENOISE <empty> \
+RENODX_HDRTONEMAP_TYPE [renodx_reinhard] [renodx_aces] [renodx_gt] [renodx_gt7] [renodx_hermite] [renodx_exproll] <empty> \
 RENODX_DEBUG
 screen.renodx.columns = 1
 
-screen.renodx_reinhard = RENODX_SCALING RENODX_REINHARD_WHITE_CLIP 
+screen.renodx_reinhard = RENODX_SCALING RENODX_SHOULDER_START RENODX_REINHARD_WHITE_CLIP 
 screen.renodx_reinhard.columns = 1
 
 screen.renodx_aces = RENODX_ACES_RGC RENODX_ACES_RRT RENODX_ACES_MIDGRAY
@@ -1913,14 +2296,17 @@ screen.renodx_gt7.columns = 1
 screen.renodx_hermite = RENODX_SCALING
 screen.renodx_hermite.columns = 1
 
+screen.renodx_exproll = RENODX_SCALING RENODX_SHOULDER_START
+screen.renodx_exproll.columns = 1
+
 //shaders.properties sliders 
-RENODX_PEAK_BRIGHTNESS RENODX_UI_BRIGHTNESS RENODX_GAME_BRIGHTNESS RENODX_UPGRADE_AMOUNT RENODX_UPGRADE_AUTO RENODX_APPC_AMOUNT RENODX_APPC_POW RENODX_SATURATION RENODX_EXPOSURE RENODX_REINHARD_WHITE_CLIP RENODX_ACES_MIDGRAY RENODX_GT_A RENODX_GT_M RENODX_GT_L RENODX_GT_C RENODX_GT_B RENODX_GT7_A RENODX_GT7_M RENODX_GT7_L RENODX_GT7_C RENODX_GT7_BLOW_AMOUNT RENODX_GT7_BLOW_START RENODX_GT7_BLOW_END \ 
+RENODX_PEAK_BRIGHTNESS RENODX_UI_BRIGHTNESS RENODX_GAME_BRIGHTNESS RENODX_SHOULDER_START RENODX_UPGRADE_AMOUNT RENODX_UPGRADE_AUTO RENODX_SATURATION RENODX_RCAS RENODX_EXPOSURE RENODX_REINHARD_WHITE_CLIP RENODX_ACES_MIDGRAY RENODX_GT_A RENODX_GT_M RENODX_GT_L RENODX_GT_C RENODX_GT_B RENODX_GT7_A RENODX_GT7_M RENODX_GT7_L RENODX_GT7_C RENODX_GT7_BLOW_AMOUNT RENODX_GT7_BLOW_START RENODX_GT7_BLOW_END \
 
 //language
 # RenoDX Screens
 screen.renodx = RenoDX
-screen.renodx_reinhard = Reinhard Settings
-screen.renodx_reinhard.comment = Cleanly roll off highlights to peak.
+screen.renodx_reinhard = Reinhard Piecewise Settings
+screen.renodx_reinhard.comment = Gradually roll off highlights to peak.
 screen.renodx_aces = ACES Settings
 screen.renodx_aces.comment = Contrast and blowout via ACES color space.
 screen.renodx_gt = Gran Turismo Sport Settings
@@ -1929,6 +2315,10 @@ screen.renodx_gt7 = Gran Turismo 7 Settings
 screen.renodx_gt7.comment = ACES-like contrast, very clippy, and very vibrant. Has customizable blowout. Clamps BT2020 (which is plenty wcg).
 screen.renodx_hermite = Hermite Spline Settings
 screen.renodx_hermite.comment = Fixed spline with toe and shoulder.
+screen.renodx_hable = Uncharted 2 / Hable Settings
+screen.renodx_hable.comment = From Uncharted 2 by John Hable, with toe, lienar extended to HDR.
+screen.renodx_exproll = Exponential Roll-off Settings
+screen.renodx_exproll.comment = From DICE's Frostbite, aggressive shoulder roll-off.
 
 # RenoDX Main
 option.RENODX_ENABLED = Enabled
@@ -1943,6 +2333,9 @@ option.RENODX_GAME_BRIGHTNESS.comment = In nits, aka paper white.
 option.RENODX_PEAK_BRIGHTNESS = Peak Brightness
 option.RENODX_PEAK_BRIGHTNESS.comment = Maximum brightness in nits.
 
+option.RENODX_SHOULDER_START = Shoulder Start
+option.RENODX_SHOULDER_START.comment = Beginning of tonemap's shoulder in nits.
+
 option.RENODX_CLAMP_COLORSPACE = Color Space Clamp
 option.RENODX_CLAMP_COLORSPACE.comment = Clamp right at final output.
 value.RENODX_CLAMP_COLORSPACE.RENODX_NONE    = None
@@ -1956,14 +2349,13 @@ value.RENODX_GAMMA.RENODX_GAMMA_NONE = Off
 value.RENODX_GAMMA.RENODX_GAMMA_22  = 2.2
 value.RENODX_GAMMA.RENODX_GAMMA_24 = 2.4
 
+option.RENODX_RCAS = RCAS
+option.RENODX_RCAS.comment = Robust (4 samples) Contrast Adaptive Sharpening.
+option.RENODX_RCAS_DENOISE = RCAS Denoise
+option.RENODX_RCAS_DENOISE.comment = Additional denoising step alongside sharpening.
+
 option.RENODX_SATURATION = Saturation
 option.RENODX_SATURATION.comment = OKLab saturation, in percentage. 100 is disabled.
-
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_AUTO Auto by Tonemap Scaling
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_PRE Before Tonemap
-value.RENODX_SATURATION_ORDER.RENODX_SATURATION_ORDER_POST After Tonemap
-option.RENODX_SATURATION_ORDER Saturation Order
-option.RENODX_SATURATION_ORDER.comment When to apply saturation. Applying before tonemap will cap to working color space. If auto, per-channel is before, luminance is after.
 
 # RenoDX Debug
 option.RENODX_DEBUG = Debug Output
@@ -1971,7 +2363,6 @@ value.RENODX_DEBUG.RENODX_DEBUG_NONE = None
 value.RENODX_DEBUG.RENODX_DEBUG_UNTONEMAPPED = Untonemapped
 value.RENODX_DEBUG.RENODX_DEBUG_TONEMAPPED = Tonemapped
 value.RENODX_DEBUG.RENODX_DEBUG_SPLIT = Untonemapped / Tonemapped
-value.RENODX_DEBUG.RENODX_DEBUG_APPCMASK = Per Channel Correct Strength
 
 option.RENODX_WORKINGCOLORSPACE = Working Color Space
 option.RENODX_WORKINGCOLORSPACE.comment = The color space of the shaderpack's rendering pipeline.
@@ -1980,16 +2371,11 @@ option.RENODX_WORKINGCOLORSPACE.comment = The color space of the shaderpack's re
 option.RENODX_UPGRADE_ENABLED = Upgrade Tone Map (BT709 Clamp)
 option.RENODX_UPGRADE_ENABLED.comment = Map SDR chroma on HDR luma.
 
-option.RENODX_UPGRADE_AMOUNT = Amount
+option.RENODX_UPGRADE_AMOUNT = Upgrade Amount
 option.RENODX_UPGRADE_AMOUNT.comment = How much should the HDR color be influenced by the SDR?
 
-option.RENODX_UPGRADE_AUTO = Auto Correct
+option.RENODX_UPGRADE_AUTO = Upgrade Auto Correct
 option.RENODX_UPGRADE_AUTO.comment = How much should the HDR color be corrected by the SDR?
-
-option.RENODX_APPC_AMOUNT = Per Channel Correction Amount
-option.RENODX_APPC_AMOUNT.comment = Attempt to reverse the blowout of SDR tonemapper.
-option.RENODX_APPC_POW = Per Channel Correction Highlights Only
-option.RENODX_APPC_POW.comment = Increase to target only highlights.
 
 # RenoDX HDR Tone Map
 option.RENODX_EXPOSURE = Exposure
@@ -2004,11 +2390,13 @@ option.RENODX_SCALING.comment = Run the tonemapper for all rgb channels or just 
 option.RENODX_HDRTONEMAP_TYPE = HDR Tone Map Type
 option.RENODX_HDRTONEMAP_TYPE.comment = Read tooltip of each!
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_OFF = Off
-value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_REINHARD = Reinhard
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_REINHARD = Reinhard Piecewise
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_ACES = ACES
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_GT = Gran Turismo Sport
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_HERMITE = Hermite Spline
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_GT7 = Gran Turismo 7
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_HABLE = Uncharted 2 / Hable
+value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_EXPROLL = Exponential Roll-off
 value.RENODX_HDRTONEMAP_TYPE.RENODX_HDRTONEMAP_TYPE_DEFAULT = Default
 
 # RenoDX Reinhard
@@ -2062,5 +2450,16 @@ option.RENODX_GT7_BLOW_START.comment = Start of chroma blowout.
 
 option.RENODX_GT7_BLOW_END = Blowout End
 option.RENODX_GT7_BLOW_END.comment = End of chroma blowout.
+
+#Hable
+option.RENODX_HABLE_A = Shoulder Strength
+option.RENODX_HABLE_B = Linear Section Strength
+option.RENODX_HABLE_C = Linear Angle
+option.RENODX_HABLE_D = Toe Strength
+option.RENODX_HABLE_E = Toe Numerator
+option.RENODX_HABLE_F = Toe Denominator
+option.RENODX_HABLE_W = White Point
+option.RENODX_HABLE_BLOWOUT = Blowout
+option.RENODX_HABLE_BLOWOUT.comment = Blend SDR blowout on hightlights.
 
 */
