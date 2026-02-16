@@ -139,13 +139,11 @@ void main() {
 
   /* DRAWBUFFERS:7 */
 
-	// vec3 color = texture2D(colortex7,texcoord).rgb;
+	vec3 color = texture2D(colortex7,texcoord).rgb;
 
-	// #ifdef CONTRAST_ADAPTATIVE_SHARPENING
-  //   color = contrastAdaptiveSharpening(color, texcoord);
-	// #endif
-
-  vec3 color = RCASRenoDX(colortex7, ivec2(texcoord / texelSize), RENODX_RCAS / 100.f, 1, RENODX_GAMMA_NONE, RENODX_CS_BT709);
+	#ifdef CONTRAST_ADAPTATIVE_SHARPENING
+    color = contrastAdaptiveSharpening(color, texcoord);
+	#endif
   
   color = saturationAndCrosstalk(color);
   
