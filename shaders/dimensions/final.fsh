@@ -114,6 +114,13 @@ void main() {
   if(shadowUV.x < 1.0 && shadowUV.y < 1.0 && hideGUI == 1)COLOR = texture2D(shadowcolor1,shadowUV).rgb;
   #endif
 
+  #ifdef HDR_ENABLED
+    COLOR = max(vec3(0), COLOR); // Clean
+    COLOR = sRGBToLinearUnclamped(COLOR); // Decode
+    COLOR = min(COLOR, vec3(HdrGamePeakBrightness / HdrGamePaperWhiteBrightness)); // Clamp Peak
+    COLOR *= HdrGamePaperWhiteBrightness / HdrUIBrightness; // UI Scaling
+    COLOR = LinearTosRGBUnclamped(COLOR); // Encode
+  #endif
 
   gl_FragColor.rgb = COLOR;
 }

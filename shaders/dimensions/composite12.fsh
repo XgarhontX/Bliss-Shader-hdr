@@ -83,9 +83,18 @@ float upperCurve(float x) {
 }
 
 vec3 luminanceCurve(vec3 color){
+	#ifdef HDR_ENABLED
+		//Reinhard Cram (good enough)
+		color = color / (color + vec3(1.0)); 
+	#endif
+
 	color.r += LOWER_CURVE * lowerCurve(color.r) + UPPER_CURVE * upperCurve(color.r);
 	color.g += LOWER_CURVE * lowerCurve(color.g) + UPPER_CURVE * upperCurve(color.g);
 	color.b += LOWER_CURVE * lowerCurve(color.b) + UPPER_CURVE * upperCurve(color.b);
+
+	#ifdef HDR_ENABLED
+		color = color / (vec3(1.0) - color);
+	#endif
 	return color;
 }
 
@@ -99,7 +108,13 @@ vec3 colorGrading(vec3 color) {
 	vec3 graded_mids = color * MIDS_TARGET * MIDS_GRADE_MUL * 1.7320508076;
 	vec3 graded_highlights = color * HIGHLIGHTS_TARGET * HIGHLIGHTS_GRADE_MUL * 1.7320508076;
 
-	return saturate(graded_shadows * shadows_amount + graded_mids * mids_amount + graded_highlights * highlights_amount);
+	vec3 result = graded_shadows * shadows_amount + graded_mids * mids_amount + graded_highlights * highlights_amount;
+	#ifndef HDR_ENABLED
+		result = saturate(result);
+	#else
+		result = max(result, vec3(0.0));
+	#endif
+	return result;
 }
 
 vec3 contrastAdaptiveSharpening(vec3 color, vec2 texcoord){
@@ -154,5 +169,9 @@ void main() {
 	  color = colorGrading(color);
   #endif
 
-	gl_FragData[0].rgb = clamp(int8Dither(color, texcoord),0.0,1.0);
+  #ifndef HDR_ENABLED
+	  gl_FragData[0].rgb = clamp(int8Dither(color, texcoord),0.0,1.0);
+  #else
+	  gl_FragData[0].rgb = color;
+  #endif
 }

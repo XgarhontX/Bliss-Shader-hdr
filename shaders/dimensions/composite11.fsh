@@ -160,16 +160,23 @@ void main() {
 
 	col = mix(lum * vec3(Purkinje_R, Purkinje_G, Purkinje_B) * Purkinje_Multiplier, col, rodCurve);
 
-	#ifndef USE_ACES_COLORSPACE_APPROXIMATION
-		col = LinearTosRGB(TONEMAP(col));
+	#ifndef HDR_ENABLED
+		#ifndef USE_ACES_COLORSPACE_APPROXIMATION
+			col = LinearTosRGB(TONEMAP(col));
+		#else
+			col = col * ACESInputMat;
+			col = TONEMAP(col);
+
+			col = LinearTosRGB(clamp(col * ACESOutputMat, 0.0, 1.0));
+		#endif
+
+		gl_FragData[0].rgb = clamp(int8Dither(col,texcoord),0.0,1.0);
 	#else
-		col = col * ACESInputMat;
-		col = TONEMAP(col);
-
-		col = LinearTosRGB(clamp(col * ACESOutputMat, 0.0, 1.0));
+		col = TONEMAPHDR(col, HdrGamePeakBrightness / HdrGamePaperWhiteBrightness); // HDR tonemap in BT709
+		col = max(vec3(0), col); // Clamp BT709
+		col = LinearTosRGBUnclamped(col); // Gamma Encode
+		gl_FragData[0].rgb = col;
 	#endif
-
-	gl_FragData[0].rgb = clamp(int8Dither(col,texcoord),0.0,1.0);
 	
 	#if DOF_QUALITY == 5
 		#if FOCUS_LASER_COLOR == 0 // Red

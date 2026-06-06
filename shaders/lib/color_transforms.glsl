@@ -31,6 +31,30 @@ vec3 LinearTosRGB(in vec3 color)
 
     return clr;
 }
+vec3 LinearTosRGBUnclamped(in vec3 color)
+{
+    vec3 x = color * 12.92f;
+    vec3 y = 1.055f * pow(color, vec3(1.0f / 2.4f)) - 0.055f;
+
+    vec3 clr = color;
+    clr.r = color.r < 0.0031308f ? x.r : y.r;
+    clr.g = color.g < 0.0031308f ? x.g : y.g;
+    clr.b = color.b < 0.0031308f ? x.b : y.b;
+
+    return clr;
+}
+vec3 sRGBToLinearUnclamped(in vec3 sRGB)
+{
+    vec3 x = sRGB / 12.92f;
+    vec3 y = pow((sRGB + 0.055f) / 1.055f, vec3(2.4f));
+
+    vec3 clr = sRGB;
+    clr.r = sRGB.r < 0.04045f ? x.r : y.r;
+    clr.g = sRGB.g < 0.04045f ? x.g : y.g;
+    clr.b = sRGB.b < 0.04045f ? x.b : y.b;
+
+    return clr;
+}
 vec3 ToneMap_Hejl2015(in vec3 hdr)
 {
     vec4 vh = vec4(hdr*0.85, 3.0);	//0
@@ -327,4 +351,55 @@ vec3 ToneMap_AgX_minimal( vec3 color ) {
 	color = clamp( color, 0.0, 1.0 );
 
 	return color;
+}
+
+
+// NeuTwo https://github.com/clshortfuse/renodx/blob/main/src/shaders/tonemap/neutwo.hlsl
+vec3 ToneMapHDR_NeuTwo( vec3 color, float peak ) {
+    color = (color * peak) / sqrt(color * color + peak * peak);
+    return color;
+}
+
+vec3 ToneMapHDR_AgX_minimal( vec3 color, float peak ) {
+    const mat3 AgXInsetMatrix = mat3(
+        0.842479062253094, 0.0423282422610123, 0.0423756549057051,
+        0.0784335999999992,  0.878468636469772,  0.0784336,
+        0.0792237451477643, 0.0791661274605434, 0.879142973793104);
+    const mat3 AgXOutsetMatrix = mat3(
+        1.19687900512017, -0.0528968517574562, -0.0529716355144438,
+        -0.0980208811401368, 1.15190312990417, -0.0980434501171241,
+        -0.0990297440797205, -0.0989611768448433, 1.15107367264116);
+	const float AgxMinEv = -12.47393;
+	const float AgxMaxEv = 4.026069;
+
+    color = AgXInsetMatrix * color; // in
+
+    // Steal from SDR AgX curve
+    // https://www.desmos.com/calculator/jq3gmeytns
+    vec3 colorBack = color;
+    color = clamp(log2(color), AgxMinEv, AgxMaxEv);
+    color = (color - AgxMinEv) / (AgxMaxEv - AgxMinEv);
+    color = agxDefaultContrastApprox(color);
+    color = max(vec3(0.0), color);
+    color = pow(color, vec3(2.2));
+
+    vec3 lower = color;
+    vec3 upper = colorBack + 0.0349592;
+    bvec3 thres = greaterThan(colorBack, vec3(0.162819));
+    color = mix(lower, upper, thres);
+
+    // New shoulder
+    color = ToneMapHDR_NeuTwo(color, peak);
+
+    // Apply AgX look
+    color = pow(color, vec3(1/2.2));
+    color = agxLook(color);
+    color = AgXOutsetMatrix * color; // out
+
+    // Linearize & Clean
+    color = max(vec3(0.0), color);
+    color = pow(color, vec3(2.2));
+    color = min(color, vec3(peak));
+    
+    return color;
 }

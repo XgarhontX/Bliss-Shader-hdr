@@ -739,6 +739,24 @@ const vec3 aerochrome_color = mix(vec3(1.0, 0.0, 0.0), vec3(0.715, 0.303, 0.631)
 #define NOISE_INTENSITY 12.0 // [1.0 2.0 3.0 4.0 6.0 8.0 10.0 12.0 14.0 16.0 18.0 20.0 22.0 24.0 32.0 48.0 64.0]
 #define NOISE_DROPOFF 1024 // [128 256 512 768 1024 1536 2048 3072 4096 8192]
 
+/////////////////////////////////
+// ----- HDRMOD SETTINGS ----- //
+/////////////////////////////////
+
+#ifdef HDR_ENABLED //uniforms used from composite11 until final.
+//   #undef HDR_ENABLED
+  uniform float HdrGamePeakBrightness;
+  uniform float HdrGamePaperWhiteBrightness;
+  uniform float HdrUIBrightness;
+#endif
+
+// #define HDR_ENABLED // HDRMod forced enable for testing
+// const float HdrGamePeakBrightness = 1000.f;
+// const float HdrGamePaperWhiteBrightness = 203.f;
+// const float HdrUIBrightness = 203.f;
+
+#define TONEMAPHDR ToneMapHDR_AgX_minimal //[ToneMapHDR_AgX_minimal ToneMapHDR_NeuTwo]
+
 ///////////////////////////////////////////
 // ----- FLOODFILL [LPV] SETTINGS ----- //
 ///////////////////////////////////////////

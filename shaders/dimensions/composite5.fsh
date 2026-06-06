@@ -49,6 +49,12 @@ const bool colortex15Clear = false;
 	*/
 #endif
 
+#ifdef HDR_ENABLED
+	// Iris will read this last, and override declaration above
+	/*
+	const int colortex7Format = RGBA16F; // Upgrade to store HDR values
+	*/
+#endif
 
 varying vec2 texcoord;
 flat varying float tempOffsets;
