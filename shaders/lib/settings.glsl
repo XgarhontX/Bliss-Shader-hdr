@@ -755,7 +755,7 @@ const vec3 aerochrome_color = mix(vec3(1.0, 0.0, 0.0), vec3(0.715, 0.303, 0.631)
 // const float HdrGamePaperWhiteBrightness = 203.f;
 // const float HdrUIBrightness = 203.f;
 
-#define TONEMAPHDR ToneMapHDR_AgX_minimal //[ToneMapHDR_AgX_minimal ToneMapHDR_AgX ToneMapHDR_allenwp ToneMapHDR_NeuTwo_Modded ToneMapHDR_NeuTwo]
+#define TONEMAPHDR ToneMapHDR_NeuTwo_Modded //[ToneMapHDR_AgX_minimal ToneMapHDR_AgX ToneMapHDR_allenwp ToneMapHDR_NeuTwo_Modded ToneMapHDR_NeuTwo]
 
 ///////////////////////////////////////////
 // ----- FLOODFILL [LPV] SETTINGS ----- //
