@@ -462,7 +462,7 @@ vec3 ToneMapHDR_AgX( vec3 color, float peak ) {
     {
         // Setup (Supposed to be CPU-side)
 		float output_max_value = peak;
-		const float awp_contrast = 1.115;
+		const float awp_contrast = 1.175;
 		const float awp_high_clip = 16.0;
 		const float awp_crossover_point = 0.1841865;
 		
@@ -504,7 +504,7 @@ vec3 ToneMapHDR_AgX_minimal( vec3 color, float peak ) {
     {
         // Setup (Supposed to be CPU-side)
 		float output_max_value = peak;
-		const float awp_contrast = 1.2;
+		const float awp_contrast = 1.175;
 		const float awp_high_clip = 16.0;
 		const float awp_crossover_point = 0.1841865;
 		
@@ -534,7 +534,7 @@ vec3 ToneMapHDR_allenwp( vec3 color, float peak ) {
     {
         // Setup (Supposed to be CPU-side)
 		float output_max_value = peak;
-		const float awp_contrast = 1.2;
+		const float awp_contrast = 1.175;
 		const float awp_high_clip = 16.0;
 		const float awp_crossover_point = 0.1841865;
 		
