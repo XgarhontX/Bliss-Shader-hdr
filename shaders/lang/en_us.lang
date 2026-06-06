@@ -740,5 +740,8 @@ option.TRANSLUCENT_COLORED_SHADOWS.comment = §bWhat is this?§r This effect all
 
 screen.HDRMOD_SETTINGS = HDRMod
 option.TONEMAPHDR = HDR Tonemapper
-    value.TONEMAPHDR.ToneMapHDR_AgX_minimal = AgX Minimal Extended
+    value.TONEMAPHDR.ToneMapHDR_AgX_minimal = AgX Minimal (Allen Pestaluky Curve)
+    value.TONEMAPHDR.ToneMapHDR_AgX = AgX (Allen Pestaluky Curve)
+    value.TONEMAPHDR.ToneMapHDR_allenwp = Allen Pestaluky Curve
+    value.TONEMAPHDR.ToneMapHDR_NeuTwo_Modded = NeuTwo (Stolen AgX Aprroximate Contrast + Saturation Boost)
     value.TONEMAPHDR.ToneMapHDR_NeuTwo = NeuTwo

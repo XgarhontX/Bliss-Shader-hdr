@@ -355,54 +355,204 @@ vec3 ToneMap_AgX_minimal( vec3 color ) {
 
 
 // NeuTwo https://github.com/clshortfuse/renodx/blob/main/src/shaders/tonemap/neutwo.hlsl
-vec3 ToneMapHDR_NeuTwo_Internal( vec3 color, float peak ) {
+vec3 ToneMapHDR_NeuTwo( vec3 color, float peak ) {
     color = (color * peak) / sqrt(color * color + peak * peak);
     return color;
 }
 
-vec3 ToneMapHDR_NeuTwo( vec3 color, float peak ) {
-    color = ToneMapHDR_NeuTwo_Internal(color, peak);
-
-    color = pow(color, vec3(1/2.2));
+vec3 ToneMapHDR_NeuTwo_Modded( vec3 color, float peak ) {
+    // Steal toe from AgX Aprrox (Important for pitch black)
     {
-        float luma = dot(color, vec3( 0.2126390059f, 0.7151686788f, 0.0721923154f));
-        color = luma + 1.185 * (color - luma);
-    }
-    color = max(vec3(0.0), color);
-    color = pow(color, vec3(2.2));
-    color = min(color, vec3(peak));
+        const float AgxMinEv = -12.47393;
+        const float AgxMaxEv = 4.026069;
+        vec3 colorBack = color;
+        color = clamp(log2(color), AgxMinEv, AgxMaxEv);
+        color = (color - AgxMinEv) / (AgxMaxEv - AgxMinEv);
+        color = agxDefaultContrastApprox(color);
+        color = max(vec3(0.0), color);
+        color = pow(color, vec3(2.2));
 
+        vec3 lower = color;
+        vec3 upper = colorBack + 0.0349592;
+        bvec3 thres = greaterThan(colorBack, vec3(0.162819));
+        color = mix(lower, upper, thres);
+    }
+
+    //Rolloff
+    color = ToneMapHDR_NeuTwo(color, peak);
+
+	// Apply AgX look (Extra Saturation)
+    color = pow(color, vec3(1/2.4));
+    {
+        float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
+        color = luma + 1.15 * (color - luma);
+    }
+    color = max(vec3(0.0), color); // Clean
+    color = pow(color, vec3(2.4));
+    color = min(color, vec3(peak)); // Clean
+    
     return color;
 }
 
-vec3 ToneMapHDR_AgX_minimal( vec3 color, float peak ) {
-    // For HDR, there is no benefit going into AgX color space
-    // Let it blowout BT709 normally
+/*
+Copyright (c) 2025 Allen Pestaluky
 
-    const float AgxMinEv = -12.47393;
-	const float AgxMaxEv = 4.026069;
-    vec3 colorBack = color;
-    color = clamp(log2(color), AgxMinEv, AgxMaxEv);
-    color = (color - AgxMinEv) / (AgxMaxEv - AgxMinEv);
-    color = agxDefaultContrastApprox(color);
-    color = max(vec3(0.0), color);
-    color = pow(color, vec3(2.2));
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    vec3 lower = color;
-    vec3 upper = colorBack + 0.0349592;
-    bvec3 thres = greaterThan(colorBack, vec3(0.162819));
-    color = mix(lower, upper, thres);
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-    color = ToneMapHDR_NeuTwo_Internal(color, peak);
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
-    color = pow(color, vec3(1/2.2));
+// allenwp tonemapping curve; developed for use in the Godot game engine
+// Source and details: https://allenwp.com/blog/2025/05/29/allenwp-tonemapping-curve/
+// Input must be a linear scene value
+vec3 allenwp_curve(vec3 x,
+		float output_max_value,
+		float awp_contrast,
+		float awp_toe_a,
+		float awp_slope,
+		float awp_w,
+		float awp_shoulder_max) {
+	// This constant must match the CPU-side code that calculates the parameters.
+	// 18% "middle grey" is perceptually 50% of the lightness of reference white.
+	const float awp_crossover_point = 0.1841865;
+
+	x = max(x, 0.0); // Negative input causes undefined behaviour from pow function!
+
+	// Reinhard-like shoulder:
+	vec3 s = x - awp_crossover_point;
+	vec3 slope_s = awp_slope * s;
+	s = slope_s * (1.0 + s / awp_w) / (1.0 + (slope_s / awp_shoulder_max));
+	s += awp_crossover_point;
+
+	// Sigmoid power function toe:
+	vec3 t = pow(x, vec3(awp_contrast));
+	t = t / (t + awp_toe_a);
+
+	return mix(s, t, lessThan(x, vec3(awp_crossover_point)));
+}
+vec3 ToneMapHDR_AgX( vec3 color, float peak ) {
+	const mat3 AgXInsetMatrix = mat3(
+		vec3( 0.856627153315983, 0.137318972929847, 0.11189821299995 ),
+		vec3( 0.0951212405381588, 0.761241990602591, 0.0767994186031903 ),
+		vec3( 0.0482516061458583, 0.101439036467562, 0.811302368396859 )
+	);
+	const mat3 AgXOutsetMatrix = mat3(
+		vec3( 1.1271005818144368, - 0.1413297634984383, - 0.14132976349843826 ),
+		vec3( - 0.11060664309660323, 1.157823702216272, - 0.11060664309660294 ),
+		vec3( - 0.016493938717834573, - 0.016493938717834257, 1.2519364065950405 )
+	);
+
+	color = AgXInsetMatrix * color; // in
+
+    // Apply curve
     {
-        float luma = dot(color, vec3( 0.2126390059f, 0.7151686788f, 0.0721923154f));
-        color = luma + 1.185 * (color - luma);
+        // Setup (Supposed to be CPU-side)
+		float output_max_value = peak;
+		const float awp_contrast = 1.115;
+		const float awp_high_clip = 16.0;
+		const float awp_crossover_point = 0.1841865;
+		
+		float awp_toe_a = ((1.0 / awp_crossover_point) - 1.0) * pow(awp_crossover_point, awp_contrast);
+		float awp_slope_denom = pow(awp_crossover_point, awp_contrast) + awp_toe_a;
+		float awp_slope = (awp_contrast * pow(awp_crossover_point, awp_contrast - 1.0) * awp_toe_a) / (awp_slope_denom * awp_slope_denom);
+		float awp_shoulder_max = output_max_value - awp_crossover_point;
+		float awp_w = awp_high_clip - awp_crossover_point;
+		
+		awp_w = awp_w * awp_w;
+		awp_w = awp_w / awp_shoulder_max;
+		awp_w = awp_w * awp_slope;
+		
+        // Do
+		color = allenwp_curve(color, peak, awp_contrast, awp_toe_a, awp_slope, awp_w, awp_shoulder_max);
     }
-    color = max(vec3(0.0), color);
-    color = pow(color, vec3(2.2));
+
+	color = AgXOutsetMatrix * color; // out
+
     color = min(color, vec3(peak));
-    
-    return color;
+
+	return color;
+}
+
+vec3 ToneMapHDR_AgX_minimal( vec3 color, float peak ) {
+    const mat3 AgXInsetMatrix = mat3(
+        0.842479062253094, 0.0423282422610123, 0.0423756549057051,
+        0.0784335999999992,  0.878468636469772,  0.0784336,
+        0.0792237451477643, 0.0791661274605434, 0.879142973793104);
+
+    const mat3 AgXOutsetMatrix = mat3(
+        1.19687900512017, -0.0528968517574562, -0.0529716355144438,
+        -0.0980208811401368, 1.15190312990417, -0.0980434501171241,
+        -0.0990297440797205, -0.0989611768448433, 1.15107367264116);
+
+	color = AgXInsetMatrix * color; // in
+
+    // Apply curve
+    {
+        // Setup (Supposed to be CPU-side)
+		float output_max_value = peak;
+		const float awp_contrast = 1.2;
+		const float awp_high_clip = 16.0;
+		const float awp_crossover_point = 0.1841865;
+		
+		float awp_toe_a = ((1.0 / awp_crossover_point) - 1.0) * pow(awp_crossover_point, awp_contrast);
+		float awp_slope_denom = pow(awp_crossover_point, awp_contrast) + awp_toe_a;
+		float awp_slope = (awp_contrast * pow(awp_crossover_point, awp_contrast - 1.0) * awp_toe_a) / (awp_slope_denom * awp_slope_denom);
+		float awp_shoulder_max = output_max_value - awp_crossover_point;
+		float awp_w = awp_high_clip - awp_crossover_point;
+		
+		awp_w = awp_w * awp_w;
+		awp_w = awp_w / awp_shoulder_max;
+		awp_w = awp_w * awp_slope;
+		
+        // Do
+		color = allenwp_curve(color, peak, awp_contrast, awp_toe_a, awp_slope, awp_w, awp_shoulder_max);
+    }
+
+	color = AgXOutsetMatrix * color; // out
+
+    color = min(color, vec3(peak));
+
+	return color;
+}
+
+vec3 ToneMapHDR_allenwp( vec3 color, float peak ) {
+    // Apply curve
+    {
+        // Setup (Supposed to be CPU-side)
+		float output_max_value = peak;
+		const float awp_contrast = 1.2;
+		const float awp_high_clip = 16.0;
+		const float awp_crossover_point = 0.1841865;
+		
+		float awp_toe_a = ((1.0 / awp_crossover_point) - 1.0) * pow(awp_crossover_point, awp_contrast);
+		float awp_slope_denom = pow(awp_crossover_point, awp_contrast) + awp_toe_a;
+		float awp_slope = (awp_contrast * pow(awp_crossover_point, awp_contrast - 1.0) * awp_toe_a) / (awp_slope_denom * awp_slope_denom);
+		float awp_shoulder_max = output_max_value - awp_crossover_point;
+		float awp_w = awp_high_clip - awp_crossover_point;
+		
+		awp_w = awp_w * awp_w;
+		awp_w = awp_w / awp_shoulder_max;
+		awp_w = awp_w * awp_slope;
+		
+        // Do
+		color = allenwp_curve(color, peak, awp_contrast, awp_toe_a, awp_slope, awp_w, awp_shoulder_max);
+    }
+
+    color = min(color, vec3(peak));
+
+	return color;
 }
