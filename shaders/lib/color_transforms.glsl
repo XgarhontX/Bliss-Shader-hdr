@@ -366,7 +366,7 @@ vec3 ToneMapHDR_NeuTwo( vec3 color, float peak ) {
     color = pow(color, vec3(1/2.2));
     {
         float luma = dot(color, vec3( 0.2126390059f, 0.7151686788f, 0.0721923154f));
-        color = luma + 1.1025 * (color - luma);
+        color = luma + 1.185 * (color - luma);
     }
     color = max(vec3(0.0), color);
     color = pow(color, vec3(2.2));
@@ -398,7 +398,7 @@ vec3 ToneMapHDR_AgX_minimal( vec3 color, float peak ) {
     color = pow(color, vec3(1/2.2));
     {
         float luma = dot(color, vec3( 0.2126390059f, 0.7151686788f, 0.0721923154f));
-        color = luma + 1.1025 * (color - luma);
+        color = luma + 1.185 * (color - luma);
     }
     color = max(vec3(0.0), color);
     color = pow(color, vec3(2.2));
